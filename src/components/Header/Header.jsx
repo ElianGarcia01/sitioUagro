@@ -94,7 +94,7 @@ function Header() {
 
                     {/* Segunda lista de navegacion */}
                     <ul className="hidden lg:flex flex-row justify-end items-center h-full w-full">
-                        <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                        <li className="bg-red-800 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
                             <a href="">Aspirantes</a>
                         </li>
                         <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">

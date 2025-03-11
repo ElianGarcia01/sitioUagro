@@ -39,7 +39,7 @@ const CardFlip = () => {
             } else {
                 setFlippedCard(cardId);
             }
-        }, 100); // Retraso de 100ms
+        }, 100) // Retraso de 100ms
     }
 
     // Maneja el hover en la tarjeta (solo para escritorio)
@@ -58,7 +58,7 @@ const CardFlip = () => {
                 {cardsData.map((card) => (
                     <div
                         key={card.id}
-                        className="relative w-full h-52 mx-auto cursor-pointer perspective-1000 flex justify-center"
+                        className="relative w-full h-64 mx-auto cursor-pointer perspective-1000 flex justify-center"
                         style={{
                             backgroundImage: `url(${card.imgback})`,
                             backgroundSize: "cover",
