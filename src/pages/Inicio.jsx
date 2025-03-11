@@ -1,6 +1,6 @@
 import videoFinal from "../assets/video/finalVideo.mp4"
 import CardFlip from "../components/CardFlip/CardFlip"
-import Carousel from "../components/Carousel/Carousel"
+// import Carousel from "../components/Carousel/Carousel"
 
 export default function Inicio() {
     return (
@@ -18,7 +18,7 @@ export default function Inicio() {
                     Tu navegador no soporta la reproducción de video.
                 </video>
 
-                <div className="absolute inset-0 bg-black/35 md:bg-black/25"></div>
+                <div className="absolute inset-0 bg-black/35 md:bg-black/45"></div>
             </section>
 
             {/* CARDS FLIP SECTION */}
