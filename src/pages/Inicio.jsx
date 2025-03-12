@@ -67,7 +67,7 @@ export default function Inicio() {
 
                     {/* MENSAJE */}
                     <div className="bg-white h-3/5 lg:h-2/5 w-full lg:w-2/4 rounded-lg shadow-2xl text-black flex flex-col items-center justify-center gap-8 px-6 pb-4">
-                        <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-5xl text-[#131837]" />
+                        <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-4xl lg:text-5xl text-[#131837]" />
                         <p className="text-justify italic">“El H. Consejo Universitario como máximo órgano de gobierno es la instancia en la que se analizan, discuten y acuerdan los asuntos institucionales fundamentales de nuestra institución, en los distintos ámbitos de la vida universitaria.”</p>
                         <NavLink className="font-bold text-md italic self-start shadow-2xl bg-[#131837] text-white hover:bg-[#131837]/80 p-2 rounded-lg">Conoce más...</NavLink>
                     </div>
