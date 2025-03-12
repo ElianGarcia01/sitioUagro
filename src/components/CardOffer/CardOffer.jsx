@@ -35,12 +35,12 @@ const CardOffer = () => {
     }
 
     return (
-        <div className="h-screen lg:h-full relative">
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-5 w-full h-full absolute top-1/2 lg:top-4/6 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="min-h-screen w-full relative">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-5 w-full h-full absolute top-5/12 lg:top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 {cardsData.map((card) => (
                     <div
                         key={card.id}
-                        className="relative w-60 h-36 p-4 lg:w-96 lg:h-64 mx-auto cursor-pointer perspective-1000 flex justify-center"
+                        className="relative w-80 h-48 p-4 lg:w-96 lg:h-64 mx-auto cursor-pointer perspective-1000 flex justify-center"
                         onClick={() => handleCardClick(card.id)} // Maneja el clic
                         onMouseEnter={() => handleMouseEnter(card.id)} // Maneja el hover (solo escritorio)
                         onMouseLeave={() => handleMouseLeave()} // Maneja el hover fuera (solo escritorio)
@@ -50,15 +50,15 @@ const CardOffer = () => {
                                 }`}
                         >
                             {/* Frente */}
-                            <div className="absolute w-full h-full text-white flex bg-[#131837] items-center justify-center rounded-lg shadow-lg backface-hidden">
-                                <h3>{card.name}</h3>
+                            <div className="absolute w-full h-full text-white flex bg-[#131837]/90 items-center justify-center rounded-lg shadow-lg backface-hidden">
+                                <h3 className="text-xl font-normal">{card.name}</h3>
                             </div>
                             {/* Reverso */}
-                            <div className="absolute w-full h-full bg-[#131837] text-white flex flex-col items-center justify-center rounded-lg shadow-lg backface-hidden transform rotate-y-180">
+                            <div className="absolute w-full h-full text-white bg-[#131837] flex flex-col items-center justify-center rounded-lg shadow-lg backface-hidden transform rotate-y-180">
                                 <img
                                     src={card.img}
                                     alt={card.name}
-                                    className="h-full w-full object-contain object-center"
+                                    className="h-full w-full object-cover object-center rounded-lg"
                                 />
                                 {/* <button className="text-center bg-red-600 rounded-lg p-4 cursor-pointer">{card.name}</button> */}
                             </div>

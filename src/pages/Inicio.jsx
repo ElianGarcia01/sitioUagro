@@ -18,7 +18,7 @@ export default function Inicio() {
                     autoPlay
                     muted
                     loop
-                    playsinline
+                    playsInline
                     className="h-full w-full shadow-2xl object-cover"
                 >
                     <source src={videoFinal} type="video/mp4" />
@@ -28,54 +28,51 @@ export default function Inicio() {
             </section>
 
             {/* CARDS FLIP SECTION */}
-            <section className="w-full">
-                {/* CARDS FLIP (visible en pantallas grandes) */}
-                <div>
-                    <CardFlip />
-                </div>
+            <section className="w-full h-ful">
+                <CardFlip />
             </section>
 
             {/* BANNER IMAGE SECTION */}
-            <section className="h-screen w-full relative bg-cover bg-center bg-no-repeat"
+            <section className="h-full w-full flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat "
                 style={{
                     backgroundImage: `url(${Banner})`,
                 }}
             >
                 {/* TÍTULO OFERTA EDUCATIVA */}
-                <div className="absolute top-1/12 lg:top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                    <img src="https://dgtidweb.uagro.mx/ejemplo/images/2024/05/08/recurso-1.png"
-                        alt=""
-                        className="h-16 lg:h-28" />
+                <div className="py-16 lg:pt-24">
+                    <img
+                        src="https://dgtidweb.uagro.mx/ejemplo/images/2024/05/08/recurso-1.png"
+                        alt="Oferta Educativa"
+                        className="h-14 lg:h-28" // Ajusta el tamaño en pantallas pequeñas
+                    />
                 </div>
+
+                {/* CARDS COMPONENT */}
                 <CardOffer />
             </section>
 
             {/* MESSAGE SECTION */}
             <section
-                className="h-screen max-h-[90vh] w-full bg-cover bg-center relative flex items-center justify-center"
+                className="min-h-screen w-full bg-cover bg-center relative flex items-center justify-center"
                 style={{
                     backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/2024/01/15/fondo_hcu.jpg')",
                     backgroundAttachment: "fixed",
                 }}
             >
-                {/* Contenedor flex para dividir en dos columnas */}
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-28 w-full h-full px-8">
-
                     {/* LOGO */}
                     <div className="flex justify-center">
                         <img src="https://dgtidweb.uagro.mx/ejemplo/images/HCU/logo-hcu.webp" alt="" />
                     </div>
 
                     {/* MENSAJE */}
-                    <div className="bg-white h-3/5 lg:h-2/5 w-full lg:w-2/4 rounded-lg shadow-2xl text-black flex flex-col items-center
-                    justify-center gap-8 px-6 pb-4">
+                    <div className="bg-white h-3/5 lg:h-2/5 w-full lg:w-2/4 rounded-lg shadow-2xl text-black flex flex-col items-center justify-center gap-8 px-6 pb-4">
                         <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-5xl text-[#131837]" />
                         <p className="text-justify italic">“El H. Consejo Universitario como máximo órgano de gobierno es la instancia en la que se analizan, discuten y acuerdan los asuntos institucionales fundamentales de nuestra institución, en los distintos ámbitos de la vida universitaria.”</p>
-                        <NavLink className="font-bold text-md italic self-start shadow-2xl bg-[#131837] text-white hover:bg-[#131837]/80 p-2 rounded-lg ">Conoce más...</NavLink>
+                        <NavLink className="font-bold text-md italic self-start shadow-2xl bg-[#131837] text-white hover:bg-[#131837]/80 p-2 rounded-lg">Conoce más...</NavLink>
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }
-
