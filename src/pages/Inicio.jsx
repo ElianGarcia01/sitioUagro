@@ -5,10 +5,17 @@ import CardOffer from "../components/CardOffer/CardOffer"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from "react-router-dom"
+import Message from "../components/Message/Message"
 // import VideoPage from "../components/VideoPage/VideoPage"
 // import Carousel from "../components/Carousel/Carousel"
 
 export default function Inicio() {
+
+    let HConsejoMensaje = "El H. Consejo Universitario como máximo órgano de gobierno es la instancia en la que se analizan, discuten y acuerdan los asuntos institucionales fundamentales de nuestra institución, en los distintos ámbitos de la vida universitaria."
+
+    let ValoresUagroMensaje = '"Valores UAGro" es una campaña integral diseñada para inspirar y fortalecer los valores fundamentales entre los estudiantes universitarios del estado de Guerrero. Con el objetivo de cultivar una comunidad académica comprometida y ética, la campaña se centra en promover la integridad, la responsabilidad, el respeto y la solidaridad'
+
+
     return (
         <>
             {/* VIDEO SECTION */}
@@ -66,16 +73,12 @@ export default function Inicio() {
                     </div>
 
                     {/* MENSAJE */}
-                    <div className="bg-white h-3/5 lg:h-2/5 w-full lg:w-2/4 rounded-lg shadow-2xl text-black flex flex-col items-center justify-center gap-8 px-6 pb-4">
-                        <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-4xl lg:text-5xl text-[#131837]" />
-                        <p className="text-justify italic">“El H. Consejo Universitario como máximo órgano de gobierno es la instancia en la que se analizan, discuten y acuerdan los asuntos institucionales fundamentales de nuestra institución, en los distintos ámbitos de la vida universitaria.”</p>
-                        <NavLink className="font-bold text-md italic self-start shadow-2xl bg-[#131837] text-white hover:bg-[#131837]/80 p-2 rounded-lg">Conoce más...</NavLink>
-                    </div>
+                    <Message message={HConsejoMensaje}></Message>
                 </div>
             </section>
 
             {/* CAROUSEL SECTION */}
-            <section className="h-[60vh] bg-white pt-6 border-b-4 mx-8 border-bg-[#131837]">
+            <section className="h-[60vh] bg-white pt-6 mx-8">
                 <h3 className="text-center text-3xl font-light">Eventos y Convocatorias</h3>
             </section>
 
@@ -87,7 +90,7 @@ export default function Inicio() {
                     backgroundAttachment: "fixed",
                 }}>
 
-                <div className="w-full h-full flex flex-col lg:flex-row justify-center items-center px-6 space-y-8 shadow-2xl lg:shadow-none">
+                <div className="w-full h-full flex flex-col lg:flex-row justify-center items-center px-8 space-y-8 shadow-2xl lg:shadow-none">
 
                     {/* MENSAJE */}
                     <div className="flex flex-col justify-center items-center h-full w-full space-y-10">
@@ -105,9 +108,18 @@ export default function Inicio() {
             </section>
 
             {/* SECTION VALORES UAGRO */}
-            <div className="bg-white h-screen">
-                <p>SOY LA SECTION DE VALORES UAGRO</p>
-            </div>
+            <section className="bg-white min-h-screen bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row justify-center items-center py-16 space-y-12 px-8 lg:gap-28"
+            style={{
+                backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-fondo-35.webp"
+            }}
+            >
+                <div className="lg:w-1/4 h-full w-full flex flex-col justify-center items-center rounded-lg">
+                    <img src="https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-logo-34.webp" alt="Valores Uagro" className="h-full w-full rounded-lg" />
+                </div>
+
+                <Message message={ValoresUagroMensaje}></Message>
+
+            </section>
         </>
     )
 }

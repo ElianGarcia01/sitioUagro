@@ -51,7 +51,7 @@ const CardOffer = () => {
                         >
                             {/* Frente */}
                             <div className="absolute w-full h-full text-white flex bg-[#131837]/90 items-center justify-center rounded-lg shadow-lg backface-hidden">
-                                <h3 className="text-xl font-light italic">{card.name}</h3>
+                                <h3 className="text-xl font-light">{card.name}</h3>
                             </div>
                             {/* Reverso */}
                             <div className="absolute w-full h-full text-white bg-[#131837] flex flex-col items-center justify-center rounded-lg shadow-lg backface-hidden transform rotate-y-180">
