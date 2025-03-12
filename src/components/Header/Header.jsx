@@ -131,7 +131,7 @@ function Header() {
                             {/* Línea divisora */}
                             <div className="border-t-2 border-white mx-4 mb-6"></div>
 
-                            <ul className="grid grid-cols-3 gap-2 p-4 text-white font-semibold text-xs">
+                            <ul className="grid grid-cols-2 gap-2 p-4 text-white font-ligth text-md">
                                 <li className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
                                 border-black text-center mb-2">
                                     <a href="">Aspirantes</a>

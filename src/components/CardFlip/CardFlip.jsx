@@ -53,12 +53,13 @@ const CardFlip = () => {
     }
 
     return (
-        <div className="bg-gray-100 h-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0.5 w-full max-w-screen mx-auto h-full">
+        <div className="h-full w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+            lg:grid-cols-4 gap-0.5 w-full mx-auto h-full">
                 {cardsData.map((card) => (
                     <div
                         key={card.id}
-                        className="relative w-full h-64 mx-auto cursor-pointer perspective-1000 flex justify-center"
+                        className="relative w-full h-64 lg:h-56 mx-auto cursor-pointer perspective-1000 flex justify-center"
                         style={{
                             backgroundImage: `url(${card.imgback})`,
                             backgroundSize: "cover",
@@ -77,7 +78,7 @@ const CardFlip = () => {
                                 <img
                                     src={card.imgname}
                                     alt={card.name}
-                                    className="h-36 w-36 object-contain object-center"
+                                    className="w-32 lg:w-36 object-contain object-center"
                                 />
                             </div>
                             {/* Reverso */}
