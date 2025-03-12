@@ -5,6 +5,7 @@ import CardOffer from "../components/CardOffer/CardOffer"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from "react-router-dom";
+import VideoPage from "../components/VideoPage/VideoPage";
 
 // import Carousel from "../components/Carousel/Carousel"
 
