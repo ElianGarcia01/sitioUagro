@@ -36,7 +36,7 @@ const CardOffer = () => {
 
     return (
         <div className="h-full w-full relative">
-            <div className="flex flex-col lg:flex-row px-2 justify-center items-center gap-5 w-full h-full absolute top-5/12 lg:top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="flex flex-col lg:flex-row px-8 justify-center items-center gap-5 w-full h-full absolute top-5/12 lg:top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 {cardsData.map((card) => (
                     <div
                         key={card.id}

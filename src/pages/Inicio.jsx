@@ -57,23 +57,24 @@ export default function Inicio() {
                 <CardOffer />
             </section>
 
-            {/* MESSAGE SECTION */}
-            <section
-                className="h-screen w-full bg-cover bg-center relative"
+            {/* SECCION H.CONSEJO UNIVERSITARIO */}
+            <section className="h-screen w-full bg-cover bg-center relative"
                 style={{
                     backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/2024/01/15/fondo_hcu.jpg')",
                     backgroundAttachment: "fixed",
                 }}
             >
-                <div className="flex flex-col lg:flex-row space-y-20 items-center justify-center lg:gap-28 w-full h-full px-8">
+                <div className="w-full h-full flex flex-col lg:flex-row justify-center items-center space-y-20 lg:gap-28 px-8">
 
                     {/* LOGO */}
-                    <div className="flex justify-center items-center">
-                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/HCU/logo-hcu.webp" alt="" />
+                    <div className="flex justify-center items-center mt-10 lg:w-1/3">
+                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/HCU/logo-hcu.webp" alt="H. Consejo Universitario" />
                     </div>
 
                     {/* MENSAJE */}
-                    <Message message={HConsejoMensaje}></Message>
+                    <div className="lg:w-2/3">
+                        <Message message={HConsejoMensaje}></Message>
+                    </div>
                 </div>
             </section>
 
@@ -82,43 +83,45 @@ export default function Inicio() {
                 <h3 className="text-center text-3xl font-light">Eventos y Convocatorias</h3>
             </section>
 
-            {/* SECTION UAGRO RANKING */}
-            <section
-                className="min-h-screen lg:min-h-[85vh] py-10 w-full bg-cover bg-center relative flex flex-col justify-center items-center"
+            {/* SECCION ORGULLOSAMENTE UAGRO */}
+            <section className="min-h-screen lg:min-h-[85vh] py-8 w-full bg-cover bg-center relative flex justify-center items-center"
                 style={{
                     backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/portadarectoria.jpg')",
-                    backgroundAttachment: "fixed",
+                    backgroundAttachment: "fixed"
                 }}>
 
-                <div className="w-full h-full flex flex-col lg:flex-row justify-center items-center px-8 space-y-8 shadow-2xl lg:shadow-none">
+                <div className="w-full h-full flex flex-col lg:flex-row justify-center items-center px-8 space-y-8 shadow-2xl lg:shadow-none gap-10">
 
                     {/* MENSAJE */}
-                    <div className="flex flex-col justify-center items-center h-full w-full space-y-10">
-                        <h3 className="text-center font-light text-white text-3xl lg:text-7xl">#OrgullosamenteUagro</h3>
+                    <div className="flex flex-col justify-center items-center h-full w-full lg:w-1/2 gap-10">
+                        <h3 className="text-center font-light text-white text-3xl lg:text-5xl">#Orgullosamente <span className="text-red-500">Uagro</span></h3>
                         <div className="bg-white h-3/5 lg:h-2/5 w-full rounded-lg shadow-2xl text-black flex flex-col items-center justify-center gap-4 px-6 py-10">
                             <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-4xl lg:text-5xl text-[#131837]" />
                             <p className="text-justify italic">“En los últimos años, hemos aumentado el número y la calidad de nuestros posgrados, hasta ubicarnos en el cuarto lugar de universidades de la región Centro Sur con mayor número de ellos. Los 54 posgrados reconocidos por su calidad académica nos llenan de satisfacción, pero también nos comprometen a seguir haciendo las cosas bien, como merece el pueblo de Guerrero.”</p>
                         </div>
                     </div>
 
-                    <div className="w-full h-full flex justify-center items-center">
-                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/premios/ranking.jpeg" alt="Ranking Uagro" className="rounded-lg h-60 lg:h-[70vh]" />
+                    <div className="w-full h-full lg:w-1/2 flex justify-center items-center">
+                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/premios/ranking.jpeg" alt="Ranking Uagro" className="rounded-lg h-60 w-60 md:w-80 md:h-80 lg:h-[400px] lg:w-[400px]" />
                     </div>
                 </div>
             </section>
 
-            {/* SECTION VALORES UAGRO */}
-            <section className="bg-white min-h-screen bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row justify-center items-center py-16 space-y-12 px-8 lg:gap-28"
-            style={{
-                backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-fondo-35.webp"
-            }}
-            >
-                <div className="lg:w-1/4 h-full w-full flex flex-col justify-center items-center rounded-lg">
-                    <img src="https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-logo-34.webp" alt="Valores Uagro" className="h-full w-full rounded-lg" />
+            {/* SECCION VALORES UAGRO */}
+            <section className="bg-white w-full h-full min-h-screen bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row justify-center items-center py-16 space-y-12 px-8 lg:gap-28"
+                style={{
+                    backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-fondo-35.webp"
+                }}>
+                
+                {/* LOGO VALORES UAGRO */}
+                <div className="h-full w-full lg:w-1/3 flex justify-center items-center rounded-lg">
+                    <img src="https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-logo-34.webp" alt="Valores Uagro" className="w-[200px] h-[250px] md:w-[300px] md:h-[350px]" />
                 </div>
 
-                <Message message={ValoresUagroMensaje}></Message>
-
+                {/* MENSAJE VALORES UAGRO */}
+                <div className="h-full w-full lg:w-2/3">
+                    <Message message={ValoresUagroMensaje}></Message>
+                </div>
             </section>
         </>
     )

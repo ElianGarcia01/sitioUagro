@@ -1,9 +1,6 @@
 import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
-import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
-import { FaPhone, FaEnvelope } from "react-icons/fa"
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCircleUser } from '@fortawesome/free-regular-svg-icons'
+import { FaFacebook, FaInstagram, FaYoutube, FaPhone, FaEnvelope } from "react-icons/fa"
 
 function Header() {
     // ESTADO Y FUNCION PARA ABRIR Y CERRAR EL NAVBAR EN PANTALLAS PEQUEÑAS
@@ -21,10 +18,10 @@ function Header() {
     ]
 
     return (
-        <nav className="w-full bg-[#131837] text-white font-stretch-normal flex flex-col items-center justify-center relative">
+        <nav className="w-full h-full bg-[#131837] text-white font-stretch-normal flex flex-col items-center justify-center relative">
 
-            {/* PRIMERA SECTION DEL HEADER (AZUL TONO BAJO) */}
-            <div className="w-full h-full bg-blue-400/35 flex flex-col lg:flex-row gap-4 justify-center items-center md:justify-between px-8 lg:font-light">
+            {/* PRIMERA SECTION DEL HEADER (TONO AZUL BAJO) */}
+            <section className="w-full h-full bg-blue-400/35 flex flex-col lg:flex-row gap-4 justify-center items-center md:justify-between px-8 lg:font-light">
                 <ul className="flex space-x-4 justify-center items-center">
                     <li>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -62,12 +59,12 @@ function Header() {
                         Email: rectoria@uagro.mx
                     </li>
                 </ul>
-            </div>
+            </section>
 
             {/* SEGUNDA SECCION DEL HEADER (AZUL TONO ALTO) */}
             <div className="w-full h-full container flex justify-between gap-12 items-center py-6 lg:py-0 px-6 relative">
                 {/* LOGO */}
-                <div className="flex justify-center items-center lg:w-1/5">
+                <div className="lg:w-1/5 flex justify-center items-center">
                     <img
                         src="https://dgtidweb.uagro.mx/ejemplo/images/uagro-logo-2024.png"
                         alt=""
@@ -76,12 +73,12 @@ function Header() {
                 </div>
 
                 {/* SEGUNDA MITAD EN LA SEGUNDA SECCION */}
-                <div className="flex flex-col justify-center items-center pt-8 gap-4">
+                <div className="lg:w-4/5 flex flex-col justify-center items-center pt-8 gap-4">
 
                     {/* Menu de navegacion visible en pantallas grandes */}
-                    <ul className="hidden lg:flex space-x-5 flex-wrap gap-4 justify-center items-center h-full mb-2">
+                    <ul className="hidden lg:flex w-full h-full space-x-8 gap-4 justify-end items-center mb-2">
                         {routes.map((route) => (
-                            <li className="text-md font-semibold" key={route.path}>
+                            <li className="text-md text-center font-semibold" key={route.path}>
                                 <NavLink
                                     to={route.path}
                                     className={({ isActive }) => (isActive ? "text-gray-400" : "text-white hover:text-red-800 transition-colors duration-500")}
