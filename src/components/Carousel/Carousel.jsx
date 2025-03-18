@@ -25,6 +25,10 @@ const Carousel = () => {
                 loop={true}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 breakpoints={{
+                    640: {
+                        slidesPerView: 2, // En pantallas grandes, 3 imágenes por slide
+                        slidesPerGroup: 2 // Mueve 1 imágen por grupo
+                    },
                     1024: {
                         slidesPerView: 3, // En pantallas grandes, 3 imágenes por slide
                         slidesPerGroup: 1 // Mueve 1 imágen por grupo
