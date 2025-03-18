@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import Message from "../components/Message/Message"
 import Carousel from "../components/Carousel/Carousel"
+import { FaCircleArrowRight } from "react-icons/fa6"
 
 export default function Inicio() {
 
@@ -80,7 +81,13 @@ export default function Inicio() {
             <section className="h-full w-full bg-white py-6 px-3 lg:px-8 flex flex-col justify-center items-center">
                 <h3 className="text-center text-4xl font-light pb-8">Eventos y Convocatorias</h3>
                 <Carousel></Carousel>
-                <button className="bg-teal-300 self-center mt-8 px-4 py-2 text-white rounded-lg cursor-pointer">Click Aquí</button>
+                <div className="text-3xl my-6 text-[#131837]">
+                    <a href="">
+                        <FaCircleArrowRight className="inline-block mr-2" />
+                        Noticias
+                    </a>
+                </div>
+                <button className="bg-teal-300 self-center my-4 px-4 py-2 text-white rounded-lg cursor-pointer">Click Aquí</button>
             </section>
 
             {/* SECCION ORGULLOSAMENTE UAGRO */}
@@ -112,7 +119,7 @@ export default function Inicio() {
                 style={{
                     backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-fondo-35.webp"
                 }}>
-                
+
                 {/* LOGO VALORES UAGRO */}
                 <div className="h-full w-full lg:w-1/3 flex justify-center items-center rounded-lg">
                     <img src="https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-logo-34.webp" alt="Valores Uagro" className="w-[200px] h-[250px] md:w-[300px] md:h-[350px]" />
