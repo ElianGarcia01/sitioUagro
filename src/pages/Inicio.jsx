@@ -4,10 +4,8 @@ import Banner from "../assets/images/Banner.webp"
 import CardOffer from "../components/CardOffer/CardOffer"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from "react-router-dom"
 import Message from "../components/Message/Message"
-// import VideoPage from "../components/VideoPage/VideoPage"
-// import Carousel from "../components/Carousel/Carousel"
+import Carousel from "../components/Carousel/Carousel"
 
 export default function Inicio() {
 
@@ -81,6 +79,7 @@ export default function Inicio() {
             {/* CAROUSEL SECTION */}
             <section className="h-[60vh] bg-white pt-6 mx-8">
                 <h3 className="text-center text-3xl font-light">Eventos y Convocatorias</h3>
+                <Carousel></Carousel>
             </section>
 
             {/* SECCION ORGULLOSAMENTE UAGRO */}
@@ -96,7 +95,7 @@ export default function Inicio() {
                     <div className="flex flex-col justify-center items-center h-full w-full lg:w-1/2 gap-10">
                         <h3 className="text-center font-light text-white text-3xl lg:text-5xl">#Orgullosamente <span className="text-red-500">Uagro</span></h3>
                         <div className="bg-white h-3/5 lg:h-2/5 w-full rounded-lg shadow-2xl text-black flex flex-col items-center justify-center gap-4 px-6 py-10">
-                            <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-4xl lg:text-5xl text-[#131837]" />
+                            <FontAwesomeIcon icon={faQuoteLeft} className="self-start text-4xl lg:text-5xl text-[#131837]/90" />
                             <p className="text-justify italic">“En los últimos años, hemos aumentado el número y la calidad de nuestros posgrados, hasta ubicarnos en el cuarto lugar de universidades de la región Centro Sur con mayor número de ellos. Los 54 posgrados reconocidos por su calidad académica nos llenan de satisfacción, pero también nos comprometen a seguir haciendo las cosas bien, como merece el pueblo de Guerrero.”</p>
                         </div>
                     </div>

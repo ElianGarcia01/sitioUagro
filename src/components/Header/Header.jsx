@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
-import { FaFacebook, FaInstagram, FaYoutube, FaPhone, FaEnvelope } from "react-icons/fa"
+import { FaFacebook, FaInstagram, FaYoutube, FaPhone, FaEnvelope, FaGraduationCap, FaUserGraduate } from "react-icons/fa"
+import { FaCircleUser, FaUserGear, FaUserPen } from "react-icons/fa6"
 
 function Header() {
     // ESTADO Y FUNCION PARA ABRIR Y CERRAR EL NAVBAR EN PANTALLAS PEQUEÑAS
@@ -18,10 +19,10 @@ function Header() {
     ]
 
     return (
-        <nav className="w-full h-full bg-[#131837] text-white font-stretch-normal flex flex-col items-center justify-center relative">
+        <nav className="w-full h-full text-white font-stretch-normal flex flex-col items-center justify-center">
 
             {/* PRIMERA SECTION DEL HEADER (TONO AZUL BAJO) */}
-            <section className="w-full h-full bg-blue-400/35 flex flex-col lg:flex-row gap-4 justify-center items-center md:justify-between px-8 lg:font-light">
+            <section className="lg:h-full w-full h-1/3 bg-blue-800/70 flex flex-col lg:flex-row gap-4 justify-center items-center md:justify-between px-8 lg:font-light">
                 <ul className="flex space-x-4 justify-center items-center">
                     <li>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -62,21 +63,22 @@ function Header() {
             </section>
 
             {/* SEGUNDA SECCION DEL HEADER (AZUL TONO ALTO) */}
-            <div className="w-full h-full container flex justify-between gap-12 items-center py-6 lg:py-0 px-6 relative">
+            <section className="w-full h-full lg:1/5 flex justify-between items-center bg-[#131837]
+            py-6 lg:py-0 px-4 lg:px-16 relative">
                 {/* LOGO */}
-                <div className="lg:w-1/5 flex justify-center items-center">
+                <div className="w-full h-full lg:w-1/5 flex justify-start items-center">
                     <img
                         src="https://dgtidweb.uagro.mx/ejemplo/images/uagro-logo-2024.png"
                         alt=""
-                        className="h-10 lg:h-14"
-                    /> 
+                        className="h-10 w-auto lg:h-12"
+                    />
                 </div>
 
                 {/* SEGUNDA MITAD EN LA SEGUNDA SECCION */}
-                <div className="lg:w-4/5 flex flex-col justify-center items-center pt-8 gap-4">
+                <div className="w-full h-full lg:w-4/5 flex flex-col justify-end items-center">
 
                     {/* Menu de navegacion visible en pantallas grandes */}
-                    <ul className="hidden lg:flex w-full h-full space-x-8 gap-4 justify-end items-center mb-2">
+                    <ul className="hidden lg:flex w-full h-full space-x-8 gap-4 justify-end items-center py-8">
                         {routes.map((route) => (
                             <li className="text-md text-center font-semibold" key={route.path}>
                                 <NavLink
@@ -90,28 +92,53 @@ function Header() {
                     </ul>
 
                     {/* Segunda lista de navegacion */}
-                    <ul className="hidden lg:flex flex-row justify-end items-center h-full w-full">
+                    <ul className="hidden h-full w-full lg:flex flex-row justify-end items-center">
                         <li className="bg-red-800 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                            <FaUserPen className="inline-block mr-2" />
                             <a href="">Aspirantes</a>
                         </li>
                         <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                            <FaCircleUser className="inline-block mr-2" />
                             <a href="">Estudiantes</a>
                         </li>
                         <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                            <FaGraduationCap className="inline-block mr-2" />
                             <a href="">Titulacion</a>
                         </li>
                         <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                            <FaUserGraduate className="inline-block mr-2" />
                             <a href="">Egresados</a>
                         </li>
                         <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
+                            <FaUserGear className="inline-block mr-2" />
                             <a href="">Trabajadores</a>
                         </li>
                     </ul>
 
+                    {/* Ícono de hamburguesa (visible en pantallas pequeñas) */}
+                    <div className="lg:hidden z-30 absolute top-8 right-4">
+                        <button onClick={toggleMenu} className="text-white focus:outline-none">
+                            <svg
+                                className="w-7 h-7"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="3"
+                                    d="M4 6h16M4 12h16m-7 6h7"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+
                     {/* Menú desplegable (visible en pantallas pequeñas) */}
                     {isMenuOpen && (
                         <div className="lg:hidden bg-black/65 backdrop-blur-md transition-all duration-700 ease-in-out
-                        absolute top-20 md:top-20 left-0 w-full z-20 pb-4">
+                        absolute top-20 left-0 w-full z-20 pb-4">
                             <ul className="flex flex-col space-y-6 p-4 mb-6">
                                 {routes.map((route) => (
                                     <li className="text-md font-normal" key={route.path}>
@@ -152,28 +179,8 @@ function Header() {
                             </ul>
                         </div>
                     )}
-
-                    {/* Ícono de hamburguesa (visible en pantallas pequeñas) */}
-                    <div className="lg:hidden z-30 absolute top-8">
-                        <button onClick={toggleMenu} className="text-white focus:outline-none">
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="3"
-                                    d="M4 6h16M4 12h16m-7 6h7"
-                                ></path>
-                            </svg>
-                        </button>
-                    </div>
                 </div>
-            </div>
+            </section>
         </nav>
     )
 }

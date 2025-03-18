@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaYoutube, FaPhone, FaEnvelope, FaMapPin } from "react-icons/fa"
-import GoogleMap from "../GoogleMap/GoogleMap"
+import MapFooter from "../MapFooter/MapFooter"
 
 function Footer() {
     return (
@@ -24,7 +24,7 @@ function Footer() {
                     </li>
                 </ul>
                 <div className="w-full h-full lg:w-5xl flex justify-center items-center">
-                    <GoogleMap address="Rectoría | UAGro" />
+                    <MapFooter address="Rectoría | UAGro" />
                 </div>
             </div>
 
