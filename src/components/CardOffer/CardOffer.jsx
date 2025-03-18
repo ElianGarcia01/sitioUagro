@@ -17,9 +17,9 @@ const CardOffer = () => {
     const handleCardClick = (cardId) => {
         setTimeout(() => {
             if (flippedCard === cardId) {
-                setFlippedCard(null);
+                setFlippedCard(null)
             } else {
-                setFlippedCard(cardId);
+                setFlippedCard(cardId)
             }
         }, 100) // Retraso de 100ms
     }
@@ -60,7 +60,7 @@ const CardOffer = () => {
                                     alt={card.name}
                                     className="h-full w-full object-cover object-center rounded-lg"
                                 />
-                                {/* <button className="text-center bg-red-600 rounded-lg p-4 cursor-pointer">{card.name}</button> */}
+                                <button className="absolute text-center bg-red-500 rounded-lg px-4 py-2 cursor-pointer w-2/4">{card.name}</button>
                             </div>
                         </div>
                     </div>
