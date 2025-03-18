@@ -27,7 +27,7 @@ const Carousel = () => {
                 breakpoints={{
                     640: {
                         slidesPerView: 2, // En pantallas grandes, 3 imágenes por slide
-                        slidesPerGroup: 2 // Mueve 1 imágen por grupo
+                        slidesPerGroup: 2 // Mueve 2 imágenES por grupo
                     },
                     1024: {
                         slidesPerView: 3, // En pantallas grandes, 3 imágenes por slide

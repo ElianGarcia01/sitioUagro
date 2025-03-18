@@ -76,7 +76,7 @@ export default function Inicio() {
                 </div>
             </section>
 
-            {/* CAROUSEL SECTION */}
+            {/* SECCION OFERTA EDUCATIVA (CAROUSEL) */}
             <section className="h-full w-full bg-white py-6 px-3 lg:px-8 flex flex-col justify-center items-center">
                 <h3 className="text-center text-4xl font-light pb-8">Eventos y Convocatorias</h3>
                 <Carousel></Carousel>
