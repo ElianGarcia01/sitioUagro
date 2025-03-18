@@ -8,7 +8,7 @@ function Footer() {
 
             {/* INFORMACION DE CONTACTO */}
             <div className="w-full h-full flex flex-col justify-evenly items-center lg:flex-row gap-8">
-                <ul className="space-y-4 text-justify w-full">
+                <ul className="space-y-4 text-justify w-full h-full">
                     <h2 className="font-semibold text-2xl md:text-3xl">Contacto:</h2>
                     <li>
                         <FaMapPin className="inline-block mr-2 text-red-500" />

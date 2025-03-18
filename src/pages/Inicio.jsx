@@ -77,9 +77,10 @@ export default function Inicio() {
             </section>
 
             {/* CAROUSEL SECTION */}
-            <section className="h-[60vh] bg-white pt-6 mx-8">
-                <h3 className="text-center text-3xl font-light">Eventos y Convocatorias</h3>
+            <section className="h-full w-full bg-white py-6 px-3 lg:px-8 flex flex-col justify-center items-center">
+                <h3 className="text-center text-4xl font-light pb-8">Eventos y Convocatorias</h3>
                 <Carousel></Carousel>
+                <button className="bg-teal-300 self-center mt-8 px-4 py-2 text-white rounded-lg cursor-pointer">Click Aquí</button>
             </section>
 
             {/* SECCION ORGULLOSAMENTE UAGRO */}
@@ -101,13 +102,13 @@ export default function Inicio() {
                     </div>
 
                     <div className="w-full h-full lg:w-1/2 flex justify-center items-center">
-                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/premios/ranking.jpeg" alt="Ranking Uagro" className="rounded-lg h-60 w-60 md:w-80 md:h-80 lg:h-[400px] lg:w-[400px]" />
+                        <img src="https://dgtidweb.uagro.mx/ejemplo/images/premios/ranking.jpeg" alt="Ranking Uagro" className="rounded-lg h-60 w-60 md:w-80 md:h-80 lg:h-[550px] lg:w-[550px]" />
                     </div>
                 </div>
             </section>
 
             {/* SECCION VALORES UAGRO */}
-            <section className="bg-white w-full h-full min-h-screen bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row justify-center items-center py-16 space-y-12 px-8 lg:gap-28"
+            <section className="bg-white w-full h-full  bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row justify-center items-center py-16 space-y-12 px-8 lg:gap-28"
                 style={{
                     backgroundImage: "url('https://dgtidweb.uagro.mx/ejemplo/images/seccion-valores/valores-fondo-35.webp"
                 }}>

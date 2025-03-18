@@ -1,0 +1,37 @@
+@media (max-width: 1023px) {
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none !important;
+    }
+}
+
+/* Cambiar el fondo de los botones */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Fondo semitransparente */
+    padding: 10px;
+    /* Aumenta el tamaño */
+    border-radius: 10%;
+    /* Hace el fondo circular */
+}
+
+/* Cambiar color de las flechas */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #212684 !important;
+}
+
+/* Cambiar color de los puntos de paginación */
+.swiper-pagination-bullet {
+    background-color: #212684 !important;
+    /* Color de los puntos inactivos */
+}
+
+/* Cambiar el color del punto activo */
+.swiper-pagination-bullet-active {
+    background-color: #212684 !important;
+    opacity: 1;
+    /* Asegura que el punto activo sea más visible */
+}
