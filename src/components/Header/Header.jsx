@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaFacebook,
@@ -6,11 +6,12 @@ import {
   FaYoutube,
   FaPhone,
   FaEnvelope,
-  FaGraduationCap,
-  FaUserGraduate,
+  FaBars,
+  FaTimes,
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
+import { FaGraduationCap, FaUserGraduate } from "react-icons/fa";
 import { FaCircleUser, FaUserGear, FaUserPen } from "react-icons/fa6";
 import "../Header/Header.css";
 
@@ -34,9 +35,50 @@ const routes = [
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(false);
+
+  // Referencias para el menú y el botón
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleSubmenu = () => setIsSubmenuOpen(!isSubmenuOpen);
+  const toggleMobileSubmenu = () => setMobileSubmenuOpen(!mobileSubmenuOpen);
+
+  // Función para manejar el hover en el menú principal
+  const handleMainItemHover = (path) => {
+    setActiveSubmenu(path);
+  };
+
+  // Función para manejar el hover en el contenedor del submenú
+  const handleSubmenuHover = (path) => {
+    setActiveSubmenu(path);
+  };
+
+  // Función para limpiar el estado cuando el mouse sale completamente del menú y submenú
+  const handleLeaveMenu = () => {
+    setActiveSubmenu(null);
+  };
+
+  // Efecto para cerrar al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -108,7 +150,7 @@ function Header() {
       <nav className="w-full h-full text-white font-stretch-normal flex flex-col items-center justify-center sticky top-0 z-50">
         {/* SEGUNDA SECCION DEL HEADER (AZUL TONO ALTO) */}
         <section className="w-full h-auto bg-[#131837]">
-          <div className="w-full h-full flex justify-between items-center bg-[#131837] py-6 lg:py-0 px-4 lg:px-16 relative">
+          <div className="w-full h-full flex justify-between items-center bg-[#131837] py-4 lg:py-0 px-4 lg:px-16 relative">
             {/* LOGO */}
             <div className="w-full h-full lg:w-1/5 flex justify-start items-center">
               <img
@@ -121,31 +163,32 @@ function Header() {
             {/* SEGUNDA MITAD EN LA SEGUNDA SECCION */}
             <div className="w-full h-full lg:w-4/5 flex flex-col justify-end items-center">
               {/* Menu de navegacion visible en pantallas grandes */}
-              <ul className="hidden lg:flex w-full h-full space-x-8 gap-4 justify-end items-center py-8">
+              <ul
+                className="hidden lg:flex w-full h-full space-x-8 gap-4 justify-end items-center py-8"
+                onMouseLeave={handleLeaveMenu}
+              >
                 {routes.map((route) => (
                   <li
                     className="text-md text-center font-semibold relative group"
                     key={route.path}
-                    onMouseEnter={() => route.submenu && setIsSubmenuOpen(true)}
-                    onMouseLeave={() =>
-                      route.submenu && setIsSubmenuOpen(false)
-                    }
+                    onMouseEnter={() => handleMainItemHover(route.path)}
                   >
                     {route.submenu ? (
                       <>
-                        <button
-                          className="flex items-center gap-1 text-white hover:text-red-500 transition-colors duration-500"
-                          onClick={toggleSubmenu}
-                        >
+                        <button className="flex items-center gap-1 text-white hover:text-red-500 transition-colors duration-500">
                           {route.name}
-                          {isSubmenuOpen ? (
+                          {activeSubmenu === route.path ? (
                             <FaChevronUp size={12} />
                           ) : (
                             <FaChevronDown size={12} />
                           )}
                         </button>
-                        {isSubmenuOpen && (
-                          <ul className="absolute left-0 mt-2 w-48 bg-[#131837] rounded-md shadow-lg z-50">
+                        {activeSubmenu === route.path && (
+                          <ul
+                            className="absolute left-0 mt-2 w-48 bg-[#131837] rounded-md shadow-lg z-50"
+                            onMouseEnter={() => handleSubmenuHover(route.path)}
+                            onMouseLeave={handleLeaveMenu}
+                          >
                             {route.submenu.map((subitem) => (
                               <li
                                 key={subitem.path}
@@ -179,116 +222,121 @@ function Header() {
               </ul>
 
               {/* Ícono de hamburguesa (visible en pantallas pequeñas) */}
-              <div className="lg:hidden z-30 absolute top-8 right-4">
+              <div className="lg:hidden z-30 absolute top-6 right-4">
                 <button
+                  ref={buttonRef}
                   onClick={toggleMenu}
-                  className="text-white focus:outline-none"
+                  className="text-white focus:outline-none text-2xl transition-transform duration-300 hover:scale-110"
+                  aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                 >
-                  <svg
-                    className="w-7 h-7"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="3"
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    ></path>
-                  </svg>
+                  {isMenuOpen ? <FaTimes /> : <FaBars />}
                 </button>
               </div>
 
               {/* Menú desplegable (visible en pantallas pequeñas) */}
               {isMenuOpen && (
                 <div
-                  className="lg:hidden bg-black/65 backdrop-blur-md transition-all duration-700 ease-in-out
-            absolute top-20 left-0 w-full z-20 pb-4"
+                  ref={menuRef}
+                  className="lg:hidden bg-[#131837] shadow-xl transition-all duration-300 ease-in-out
+                    absolute top-16 left-0 w-full z-20 max-h-[calc(100vh-4rem)] overflow-y-auto"
                 >
-                  <ul className="flex flex-col space-y-6 p-4 mb-6">
-                    {routes.map((route) => (
-                      <li className="text-md font-normal" key={route.path}>
-                        {route.submenu ? (
-                          <>
-                            <button
-                              className="flex items-center gap-2 text-white"
-                              onClick={toggleSubmenu}
+                  <div className="px-4 py-2">
+
+                    {/* Menú principal */}
+                    <ul className="space-y-1">
+                      {routes.map((route) => (
+                        <li className="text-md font-medium" key={route.path}>
+                          {route.submenu ? (
+                            <>
+                              <button
+                                className="flex items-center justify-between w-full py-3 px-2 text-white hover:bg-blue-900/50 rounded transition-colors"
+                                onClick={toggleMobileSubmenu}
+                              >
+                                <span>{route.name}</span>
+                                {mobileSubmenuOpen ? (
+                                  <FaChevronUp size={12} />
+                                ) : (
+                                  <FaChevronDown size={12} />
+                                )}
+                              </button>
+                              {mobileSubmenuOpen && (
+                                <ul className="ml-4 mb-2 space-y-1">
+                                  {route.submenu.map((subitem) => (
+                                    <li key={subitem.path}>
+                                      <NavLink
+                                        to={subitem.path}
+                                        className="block py-2 px-2 text-gray-300 hover:text-white hover:bg-blue-900/30 rounded transition-colors"
+                                        onClick={() => {
+                                          setIsMenuOpen(false);
+                                          setMobileSubmenuOpen(false);
+                                        }}
+                                      >
+                                        {subitem.name}
+                                      </NavLink>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </>
+                          ) : (
+                            <NavLink
+                              to={route.path}
+                              className={({ isActive }) =>
+                                `block py-3 px-2 rounded transition-colors ${
+                                  isActive
+                                    ? "text-gray-300 bg-blue-500/30"
+                                    : "text-white hover:text-white hover:bg-blue-500/30"
+                                }`
+                              }
+                              onClick={() => setIsMenuOpen(false)}
                             >
                               {route.name}
-                              {isSubmenuOpen ? (
-                                <FaChevronUp size={12} />
-                              ) : (
-                                <FaChevronDown size={12} />
-                              )}
-                            </button>
-                            {isSubmenuOpen && (
-                              <ul className="ml-4 mt-2 space-y-3">
-                                {route.submenu.map((subitem) => (
-                                  <li key={subitem.path}>
-                                    <NavLink
-                                      to={subitem.path}
-                                      className="block text-gray-300 hover:text-white"
-                                    >
-                                      {subitem.name}
-                                    </NavLink>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </>
-                        ) : (
-                          <NavLink
-                            to={route.path}
-                            className={({ isActive }) =>
-                              isActive
-                                ? "text-gray-300"
-                                : "text-white hover:text-red-800 transition-colors duration-500"
-                            }
+                            </NavLink>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Línea divisora */}
+                    <div className="border-t border-white/20 my-3"></div>
+
+                    {/* Menú secundario */}
+                    <ul className="space-y-2 mb-3">
+                      {[
+                        {
+                          icon: <FaUserPen className="text-lg mr-3" />,
+                          text: "Aspirantes",
+                        },
+                        {
+                          icon: <FaCircleUser className="text-lg mr-3" />,
+                          text: "Estudiantes",
+                        },
+                        {
+                          icon: <FaGraduationCap className="text-lg mr-3" />,
+                          text: "Titulación",
+                        },
+                        {
+                          icon: <FaUserGraduate className="text-lg mr-3" />,
+                          text: "Egresados",
+                        },
+                        {
+                          icon: <FaUserGear className="text-lg mr-3" />,
+                          text: "Trabajadores",
+                        },
+                      ].map((item, index) => (
+                        <li key={index}>
+                          <a
+                            href="#"
+                            className="flex items-center py-3 px-2 bg-blue-400/40 hover:bg-blue-400/70 rounded transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
                           >
-                            {route.name}
-                          </NavLink>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Línea divisora */}
-                  <div className="border-t-2 border-white mx-4 mb-6"></div>
-
-                  <ul className="grid grid-cols-2 gap-2 p-4 text-white font-ligth text-sm">
-                    <li
-                      className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
-                    border-black text-center mb-2"
-                    >
-                      <a href="">Aspirantes</a>
-                    </li>
-                    <li
-                      className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
-                    border-black text-center mb-2"
-                    >
-                      <a href="">Estudiantes</a>
-                    </li>
-                    <li
-                      className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
-                    border-black text-center mb-2"
-                    >
-                      <a href="">Titulacion</a>
-                    </li>
-                    <li
-                      className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
-                    border-black text-center mb-2"
-                    >
-                      <a href="">Egresados</a>
-                    </li>
-                    <li
-                      className="bg-blue-400/50 py-1 px-2 md:px-5 hover:bg-[#131837] transition-colors duration-500 border-x-1 
-                    border-black text-center mb-2"
-                    >
-                      <a href="">Trabajadores</a>
-                    </li>
-                  </ul>
+                            {item.icon}
+                            <span>{item.text}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>
