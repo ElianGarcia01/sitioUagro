@@ -26,7 +26,6 @@ const routes = [
     submenu: [
       { path: "Licenciaturas", name: "Licenciaturas" },
       { path: "Posgrados", name: "Posgrados" },
-      { path: "EducacionContinua", name: "Educación Continua" },
     ],
   },
   { path: "AdministracionCentral", name: "Administracion Central" },
@@ -192,11 +191,11 @@ function Header() {
                             {route.submenu.map((subitem) => (
                               <li
                                 key={subitem.path}
-                                className="py-2 px-4 hover:bg-blue-900"
+                                className="py-2 px-4 hover:bg-red-500"
                               >
                                 <NavLink
                                   to={subitem.path}
-                                  className="block text-white hover:text-red-400"
+                                  className="block text-white"
                                 >
                                   {subitem.name}
                                 </NavLink>
@@ -210,7 +209,7 @@ function Header() {
                         to={route.path}
                         className={({ isActive }) =>
                           isActive
-                            ? "text-gray-400"
+                            ? "text-red-500"
                             : "text-white hover:text-red-500 transition-colors duration-500"
                         }
                       >
@@ -344,7 +343,7 @@ function Header() {
         </section>
       </nav>
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header
