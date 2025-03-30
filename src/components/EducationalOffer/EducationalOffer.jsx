@@ -13,9 +13,31 @@ import { FaCircle, FaGlobe, FaMapMarkedAlt } from "react-icons/fa";
 import ButtonCartel from "../ButtonCartel/ButtonCartel";
 import ShareButtonF from "../ShareButton/ShareButtonF";
 import ShareButtonW from "../ShareButton/ShareButtonW";
+import { FiSearch } from "react-icons/fi";
+import { normalizeText } from "../normalizeText/normalizeText";
 
 function EducationalOffer() {
-  const [escuelas, setEscuelas] = useState([]);
+  // Estado para manejar el arreglo de escuelas en la solicitud a la API
+  const [schools, setSchools] = useState([]);
+
+  // Estado para manejar el valor del input
+  const [searchInput, setSearchInput] = useState("");
+
+  // Funcioon para cambiar le valor del input por el texto que fue ingresado
+  const handleChangeSearch = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Estado para cambiar el valor del boton de regiones
+  const [regionValue, setRegionValue] = useState("");
+
+  // Funcion para cambiar los valores de los botones
+  const handleChangeCheckbox = (event) => {
+    setRegionValue(event.target.value);
+  };
+
+  // Estado para renderizar nuevas escuelas filtradas
+  const [filteredSchools, setFilteredSchools] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,7 +45,7 @@ function EducationalOffer() {
         const response = await axios.get(
           "https://strapi.uagro.mx/api/niveles-superiores"
         );
-        setEscuelas(response.data.docs);
+        setSchools(response.data.docs);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -31,24 +53,87 @@ function EducationalOffer() {
     getData();
   }, []);
 
+  useEffect(() => {
+    setFilteredSchools(
+      schools.filter((school) => {
+        const matchingInputSearch = normalizeText(
+          school.nivelSuperior
+        ).includes(normalizeText(searchInput));
+        const matchingButtonRegion =
+          regionValue == "" || school.region == regionValue;
+        return matchingInputSearch && matchingButtonRegion;
+      })
+    );
+  }, [searchInput, schools, regionValue]);
+
+  // New Set para filtrar regiones unicas
+  const uniquesRegions = Array.from(
+    new Set(schools.map((school) => school.region))
+  ).reverse();
+
   return (
     <div className="w-full h-full p-12">
-      {escuelas.map((escuela) => (
+      
+      {/* Filtrado por regiones */}
+      <div className="w-full h-full space-x-2">
+        <button
+          className={`font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+            regionValue === ""
+              ? "bg-blue-600 text-white shadow-md"
+              : "bg-gray-300 hover:bg-gray-200 text-gray-800"
+          }`}
+          value=""
+          onClick={handleChangeCheckbox}
+        >
+          Todas
+        </button>
+
+        {uniquesRegions.map((region) => (
+          <button
+            className={`font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+              regionValue === region
+                ? "bg-blue-600 text-white shadow-md"
+                : "bg-gray-300 hover:bg-gray-200 text-gray-800"
+            }`}
+            key={region}
+            value={region}
+            onClick={handleChangeCheckbox}
+          >
+            {region}
+          </button>
+        ))}
+      </div>
+
+      {/* Filtro de escuelas por busqueda de texto */}
+      <div className="relative max-w-lg mx-auto my-8 w-full shadow-2xl">
+        <div className="flex items-center border-2 border-gray-300 rounded-full px-5 py-3 bg-white shadow-md hover:shadow-lg transition-all duration-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-300">
+          <FiSearch className="text-gray-500 mr-3" size={20} />
+          <input
+            type="text"
+            placeholder="Search for a city..."
+            className="w-full outline-none text-gray-700 placeholder-gray-500 bg-transparent"
+            value={searchInput}
+            onChange={handleChangeSearch}
+          />
+        </div>
+      </div>
+
+      {filteredSchools.map((school) => (
         <div
-          key={escuela._id}
+          key={school._id}
           className="w-full h-full shadow-2xl rounded-2xl p-6 mb-6 flex flex-col items-center md:flex-row md:items-start"
         >
           {/* Seccion de la lista de licenciaturas */}
           <div className="px-4 py-4 h-full w-2/5">
             {/* Titulo */}
             <h3 className="text-black text-2xl font-bold pb-3 flex items-center">
-              {escuela.nivelSuperior}
+              {school.nivelSuperior}
               <FaGraduationCap className="inline-block ml-2" />
             </h3>
             <h4 className="text-2xl font-semibold">Programa Educativo</h4>
 
             {/* Campo para mostrar lista de licenciaturas  */}
-            {escuela.licenciaturas?.map((licenciatura, index) => (
+            {school.licenciaturas?.map((licenciatura, index) => (
               <div key={index} className="flex items-baseline my-2">
                 <FaCircle className="mr-2 text-black" size={9} />
                 <span className="text-black text-md">
@@ -79,13 +164,13 @@ function EducationalOffer() {
           {/* Logo */}
           <div className="w-24 h-24 lg:w-48 lg:h-48 flex-shrink-0">
             <img
-              src={escuela.imagen.url}
-              alt={escuela.nombre}
+              src={school.imagen.url}
+              alt={school.nombre}
               className="w-full h-full object-cover"
             />
           </div>
 
-          {/* Información de contacto - Escuelas */}
+          {/* Información de contacto - escuelas */}
           <div className="md:ml-6 h-full w-full px-2 flex-1 text-center md:text-left space-y-2">
             <h2 className="text-xl font-bold flex justify-start items-center">
               Contacto
@@ -94,32 +179,32 @@ function EducationalOffer() {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <a
-                  href={`https://${escuela.contacto["sitio web"]}`}
+                  href={`https://${school.contacto["sitio web"]}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaGlobe className="mr-2 inline-block" />
-                  {escuela.contacto.sitioWeb}
+                  {school.contacto.sitioWeb}
                 </a>
               </li>
 
               <li className="flex items-center">
-                <a href={`tel:${escuela.contacto.telefono}`}>
+                <a href={`tel:${school.contacto.telefono}`}>
                   <FaPhone className="mr-2 inline-block" />
-                  {escuela.contacto.telefono}
+                  {school.contacto.telefono}
                 </a>
               </li>
 
               <li className="flex items-center">
-                <a href={`mailto:${escuela.contacto.email}`}>
+                <a href={`mailto:${school.contacto.email}`}>
                   <FaEnvelope className="mr-2 inline-block" />
-                  {escuela.contacto.email}
+                  {school.contacto.email}
                 </a>
               </li>
 
               <li className="flex items-center">
                 <FaMapMarkedAlt className="mr-2 inline-block" />
-                {escuela.contacto.direccion}
+                {school.contacto.direccion}
               </li>
             </ul>
 
@@ -150,7 +235,7 @@ function EducationalOffer() {
               <FaLocationDot className="inline-block ml-2" />
             </h2>
             <div className="w-full h-48">
-              <MapFooter address={escuela.ubicacion} />
+              <MapFooter address={school.ubicacion} />
             </div>
           </div>
         </div>
@@ -159,4 +244,4 @@ function EducationalOffer() {
   );
 }
 
-export default EducationalOffer
+export default EducationalOffer;

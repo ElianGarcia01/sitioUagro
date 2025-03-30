@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Transición suave para el hover y active */
+button {
+    transition: all 0.2s ease;
+  }
+  
+  /* Efecto al hacer click */
+  button:active {
+    transform: scale(0.98);
+  }
