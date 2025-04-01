@@ -8,11 +8,10 @@ const ShareButtonW = ({ url }) => {
   }
 
   return (
-    <div className="w-32 text-center rounded-lg px-2 py-2 mt-6 text-white bg-green-500 hover:bg-green-600 transition duration-300 cursor-pointer">
-      <a onClick={handleShare} className="w-full h-full">
-        Whatsapp
-        <FaWhatsapp className="inline-block ml-2" />
-      </a>
+    <div>
+      <button href="#" className="h-12 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg cursor-pointer" onClick={handleShare}>
+        <FaWhatsapp className="inline-block mr-0 text-2xl text-white" />
+      </button>
     </div>
   )
 }
