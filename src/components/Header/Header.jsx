@@ -17,7 +17,7 @@ import "../Header/Header.css";
 
 // ARREGLO DE OBJETOS, RUTAS
 const routes = [
-  { path: "/", name: "Inicio" },
+  { path: "/frontend", name: "Inicio" },
   { path: "Conocenos", name: "Conocenos" },
   { path: "HConsejoUniversitario", name: "H. Consejo Universitario" },
   {
