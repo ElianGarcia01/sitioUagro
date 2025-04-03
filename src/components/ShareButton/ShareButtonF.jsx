@@ -11,8 +11,8 @@ const ShareButtonF = ({ url, title }) => {
 
   return (
     <div>
-      <button href="#" className="h-12 bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg cursor-pointer" onClick={handleShare}>
-        <FaFacebook className="inline-block mr-0 text-2xl text-white" />
+      <button href="#" className="h-auto bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg cursor-pointer" onClick={handleShare}>
+        <FaFacebook className="inline-block mr-0 text-lg  lg:text-2xl text-white" />
       </button>
     </div>
   );
