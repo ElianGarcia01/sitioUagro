@@ -4,8 +4,6 @@ import InicioLayout from "./layouts/InicioLayout";
 import Inicio from "./pages/Inicio";
 import NotFound from "./pages/NotFound";
 import Conocenos from "./pages/Conocenos";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Licenciaturas from "./pages/Licenciaturas";
 import Posgrados from "./pages/Posgrados";
 
@@ -43,21 +41,6 @@ function App() {
       element: <NotFound />,
     },
   ]);
-
-  const [notas, setNotas] = useState([]);
-
-  const getData = async () => {
-    const response = await axios.get(
-      "https://strapi.uagro.mx/api/niveles-superiores"
-    );
-    console.log(response.data.docs);
-
-    setNotas(response.data.docs);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>
