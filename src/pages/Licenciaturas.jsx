@@ -13,7 +13,7 @@ export default function Licenciaturas() {
       ></section>
 
       {/* SECCION DE BUSQUEDA */}
-      <section className="flex flex-col lg:flex-row gap-8 px-12 h-[20vh] w-full py-4">
+      <section className="flex flex-col lg:flex-row gap-8 px-12 h-full w-full py-4">
         <a href="" className="w-full h-full">
           <img
             src="https://dgtidweb.uagro.mx/ejemplo/images/2025/01/31/busqueavanzada-02.png"

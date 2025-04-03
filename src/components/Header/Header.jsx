@@ -17,7 +17,7 @@ import "../Header/Header.css";
 
 // ARREGLO DE OBJETOS, RUTAS
 const routes = [
-  { path: "/", name: "Inicio" },
+  { path: "/frontend/", name: "Inicio" },
   { path: "Conocenos", name: "Conocenos" },
   { path: "HConsejoUniversitario", name: "H. Consejo Universitario" },
   {
@@ -207,6 +207,7 @@ function Header() {
                     ) : (
                       <NavLink
                         to={route.path}
+                        end
                         className={({ isActive }) =>
                           isActive
                             ? "text-red-500"
