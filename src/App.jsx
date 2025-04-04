@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, ScrollRestoration } from "react-router-dom";
 import InicioLayout from "./layouts/InicioLayout";
 import Inicio from "./pages/Inicio";
 import NotFound from "./pages/NotFound";
@@ -10,13 +10,21 @@ import HConsejo from "./pages/HConsejo";
 import AdministracionCentral from "./pages/AdministracionCentral";
 import ValoresUagro from "./pages/ValoresUagro";
 
-
+// Creamos un componente de layout que incluye el ScrollRestoration
+function Root() {
+  return (
+    <>
+      <ScrollRestoration />
+      <InicioLayout />
+    </>
+  );
+}
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/frontend",
-      element: <InicioLayout />,
+      element: <Root />,  // Usamos el nuevo componente Root en lugar de InicioLayout directamente
       children: [
         {
           path: "",

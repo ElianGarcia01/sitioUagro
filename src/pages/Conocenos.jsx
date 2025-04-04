@@ -3,7 +3,7 @@ export default function Inicio() {
     <>
       {/* BANNER CONOCENOS */}
       <section
-        className="h-[7.5vh] lg:h-[36.5vh] bg-contain bg-no-repeat"
+        className="h-[7.3vh] lg:h-[35.2vh] bg-contain bg-no-repeat"
         style={{
           backgroundImage:
             "url('https://dgtidweb.uagro.mx/ejemplo/images/conocenos/head_conocenos_00.jpg') ",

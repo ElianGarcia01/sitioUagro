@@ -281,6 +281,7 @@ function Header() {
                           ) : (
                             <NavLink
                               to={route.path}
+                              end
                               className={({ isActive }) =>
                                 `block py-3 px-2 rounded transition-colors ${
                                   isActive
