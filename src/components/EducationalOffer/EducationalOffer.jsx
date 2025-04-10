@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MapFooter from "../MapFooter/MapFooter";
 import {
   FaAddressBook,
@@ -18,6 +17,7 @@ import { normalizeText } from "../normalizeText/normalizeText";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import {getNivelesSuperiores} from  "../../services/api"
 
 function EducationalOffer() {
   const [schools, setSchools] = useState([]);
@@ -40,27 +40,27 @@ function EducationalOffer() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(
-          "https://strapi.uagro.mx/api/niveles-superiores?limit=50"
-        );
+        const response = await getNivelesSuperiores();
+        console.log(response);
+        
         const schoolData = response.data.docs.reverse();
         setSchools(schoolData);
 
-        // Calcular y setear las regiones únicas solo una vez
         const regions = Array.from(
           new Set(
             schoolData.map((school) => school.region?.nombre).filter(Boolean)
           )
         );
         setUniquesRegions(regions);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
         setLoading(false);
       }
     };
+
     getData();
-  }, []); // Este efecto solo se ejecuta una vez al montar el componente
+  }, []);
 
   useEffect(() => {
     setFilteredSchools(

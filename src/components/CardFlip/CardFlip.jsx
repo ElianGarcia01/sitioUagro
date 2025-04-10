@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Skeleton from "react-loading-skeleton"; // Importa Skeleton
 import "react-loading-skeleton/dist/skeleton.css"; // Importa los estilos de Skeleton
 import "./CardFlip.css";
+import { getServiciosImagenes } from "../../services/api";
 
 const CardFlip = () => {
   const [servicios, setServicios] = useState([]);
@@ -11,9 +11,7 @@ const CardFlip = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(
-          "https://strapi.uagro.mx/api/servicios-imagenes"
-        );
+        const response = await getServiciosImagenes()
         setServicios(response.data.docs.reverse());
         setLoading(false); // Cuando los datos se obtienen, actualizamos el estado
       } catch (error) {
