@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MapFooter from "../MapFooter/MapFooter";
 import {
   FaAddressBook,
@@ -13,20 +13,12 @@ import ButtonCartel from "../ButtonCartel/ButtonCartel";
 import ShareButtonF from "../ShareButton/ShareButtonF";
 import ShareButtonW from "../ShareButton/ShareButtonW";
 import { FiSearch } from "react-icons/fi";
-import { normalizeText } from "../normalizeText/normalizeText";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {getNivelesSuperiores} from  "../../services/api"
 
-function EducationalOffer() {
-  const [schools, setSchools] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [regionValue, setRegionValue] = useState("");
-  const [filteredSchools, setFilteredSchools] = useState([]);
-  const [loading, setLoading] = useState(true);
+function EducationalOffer({uniquesRegions, filteredSchools, loading}) {
   const [hasSearched, setHasSearched] = useState(false);
-  const [uniquesRegions, setUniquesRegions] = useState([]); // Estado para las regiones únicas
 
   const handleChangeSearch = (event) => {
     setSearchInput(event.target.value);
@@ -35,45 +27,7 @@ function EducationalOffer() {
 
   const handleChangeCheckbox = (event) => {
     setRegionValue(event.target.value);
-  };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await getNivelesSuperiores();
-        console.log(response);
-        
-        const schoolData = response.data.docs.reverse();
-        setSchools(schoolData);
-
-        const regions = Array.from(
-          new Set(
-            schoolData.map((school) => school.region?.nombre).filter(Boolean)
-          )
-        );
-        setUniquesRegions(regions);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getData();
-  }, []);
-
-  useEffect(() => {
-    setFilteredSchools(
-      schools.filter((school) => {
-        const matchingInputSearch = normalizeText(
-          school.nivelSuperior
-        ).includes(normalizeText(searchInput));
-        const matchingButtonRegion =
-          regionValue == "" || school.region.nombre == regionValue;
-        return matchingInputSearch && matchingButtonRegion;
-      })
-    );
-  }, [searchInput, schools, regionValue]);
+  }
 
   ///////////////////////// RETORNO DE CONTENIDO JSX ////////////////////////////
   return (
