@@ -14,6 +14,7 @@ import {
 import { FaGraduationCap, FaUserGraduate } from "react-icons/fa";
 import { FaCircleUser, FaUserGear, FaUserPen } from "react-icons/fa6";
 import "../Header/Header.css";
+import { Link } from "react-router-dom";
 
 // ARREGLO DE OBJETOS, RUTAS
 const routes = [
@@ -151,13 +152,18 @@ function Header() {
         <section className="w-full h-auto bg-[#131837]">
           <div className="w-full h-full flex justify-between items-center bg-[#131837] py-4 lg:py-0 px-4 lg:px-16 relative">
             {/* LOGO */}
-            <div className="w-full h-full lg:w-1/5 flex justify-start items-center">
-              <img
-                src="https://dgtidweb.uagro.mx/ejemplo/images/uagro-logo-2024.png"
-                alt=""
-                className="h-10 w-auto lg:h-12"
-              />
-            </div>
+            <Link
+              to=""
+              className="w-full h-full lg:w-1/5 flex justify-start items-center"
+            >
+              <button className="cursor-pointer">
+                <img
+                  src="https://dgtidweb.uagro.mx/ejemplo/images/uagro-logo-2024.png"
+                  alt=""
+                  className="h-10 w-auto lg:h-12"
+                />
+              </button>
+            </Link>
 
             {/* SEGUNDA MITAD EN LA SEGUNDA SECCION */}
             <div className="w-full h-full lg:w-4/5 flex flex-col justify-end items-center">
@@ -226,7 +232,7 @@ function Header() {
                 <button
                   ref={buttonRef}
                   onClick={toggleMenu}
-                  className="text-white focus:outline-none text-2xl transition-transform duration-300 hover:scale-110"
+                  className="text-white focus:outline-none cursor-pointer text-2xl transition-transform duration-300 hover:scale-110"
                   aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                 >
                   {isMenuOpen ? <FaTimes /> : <FaBars />}
@@ -241,7 +247,6 @@ function Header() {
                     absolute top-16 left-0 w-full z-20 max-h-[calc(100vh-4rem)] overflow-y-auto"
                 >
                   <div className="px-4 py-2">
-
                     {/* Menú principal */}
                     <ul className="space-y-1">
                       {routes.map((route) => (
@@ -345,7 +350,7 @@ function Header() {
         </section>
       </nav>
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;

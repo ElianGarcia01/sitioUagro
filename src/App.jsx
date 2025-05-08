@@ -9,6 +9,7 @@ import Posgrados from "./pages/Posgrados";
 import HConsejo from "./pages/HConsejo";
 import AdministracionCentral from "./pages/AdministracionCentral";
 import ValoresUagro from "./pages/ValoresUagro";
+import Deportes from "./pages/Deportes";
 
 // Creamos un componente de layout que incluye el ScrollRestoration
 function Root() {
@@ -53,6 +54,10 @@ function App() {
         {
           path: "ValoresUagro",
           element: <ValoresUagro />
+        },
+        {
+          path: "deportes",
+          element: <Deportes />
         },
       ],
     },
