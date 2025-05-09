@@ -186,7 +186,7 @@ export default function Deportes() {
       </section>
 
       {/* Sección de video */}
-      <section className="h-[60vh] lg:h-screen bg-blue-950 flex flex-col items-center justify-center px-4">
+      <section className="h-[60vh] lg:h-[90vh] bg-blue-950 flex flex-col items-center justify-center px-4">
         <h2 className="text-white text-2xl lg:text-3xl font-semibold mb-10">
           DEPORTES UAGRO
         </h2>
