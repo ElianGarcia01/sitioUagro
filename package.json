@@ -22,7 +22,7 @@
     "react-loading-skeleton": "^3.5.0",
     "react-router-dom": "^7.3.0",
     "skeleton-css": "^2.0.4",
-    "swiper": "^11.2.5",
+    "swiper": "^11.2.6",
     "swiper-react": "^1.0.0"
   },
   "devDependencies": {
