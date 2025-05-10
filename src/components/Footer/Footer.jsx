@@ -30,10 +30,14 @@ function Footer() {
             01(747) 471-93-10 Ext. 3000
           </li>
         </ul>
-        <div className="w-full h-60 lg:w-[600px] flex justify-center
-        items-center">
-          <MapFooter address="Rectoría | UAGro" />
-        </div>
+
+                <div className="w-full h-full lg:w-5xl flex justify-center items-center">
+
+
+                    <MapFooter address="Rectoría | UAGro" />
+
+
+                </div>
       </div>
 
       {/* INFORMACION DE REDES SOCIALES */}

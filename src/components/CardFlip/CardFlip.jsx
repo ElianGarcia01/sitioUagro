@@ -4,20 +4,22 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./CardFlip.css";
 import { getServiciosImagenes } from "../../services/api";
 import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners"; // Importa el spinner
 
 const CardFlip = () => {
   const [servicios, setServicios] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado para controlar la carga
+  const [loading, setLoading] = useState(true);
+  const [imagenesCargadas, setImagenesCargadas] = useState({}); // Estado para controlar cada imagen
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await getServiciosImagenes();
         setServicios(response.data.docs.reverse());
-        setLoading(false); // Cuando los datos se obtienen, actualizamos el estado
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setLoading(false); // En caso de error, también desactivamos el estado de carga
+        setLoading(false);
       }
     };
     getData();
@@ -27,11 +29,7 @@ const CardFlip = () => {
 
   const handleCardClick = (cardId) => {
     setTimeout(() => {
-      if (flippedCard === cardId) {
-        setFlippedCard(null);
-      } else {
-        setFlippedCard(cardId);
-      }
+      setFlippedCard(flippedCard === cardId ? null : cardId);
     }, 100);
   };
 
@@ -43,23 +41,22 @@ const CardFlip = () => {
     setFlippedCard(null);
   };
 
+  const handleImageLoad = (index) => {
+    setImagenesCargadas((prev) => ({ ...prev, [index]: true }));
+  };
+
   return (
     <div className="h-full w-full">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0.5 w-full mx-auto h-full">
         {loading
-          ? // Skeleton Loader responsivo para pantallas pequeñas y grandes
-            Array(6)
+          ? Array(6)
               .fill()
               .map((_, index) => (
                 <div
                   key={index}
-                  className="relative bg-gray-300 w-full h-64 sm:h-72 md:h-64 lg:h-56 mx-auto cursor-pointer perspective-100 flex justify-center"
+                  className="relative bg-gray-300 w-full h-64 sm:h-72 md:h-64 lg:h-56 mx-auto cursor-pointer perspective-100 flex justify-center items-center"
                 >
-                  <Skeleton
-                    height="100%" // Altura completa de la tarjeta
-                    width="100%" // Ancho completo de la tarjeta
-                    className="rounded-lg"
-                  />
+                  <Skeleton height="100%" width="100%" className="rounded-lg" />
                 </div>
               ))
           : servicios.map((servicio, index) => (
@@ -82,17 +79,28 @@ const CardFlip = () => {
                 >
                   {/* Frente */}
                   <div className="absolute w-full h-full text-white flex items-center justify-center rounded-lg shadow-lg backface-hidden">
+                    {!imagenesCargadas[index] && (
+                      <div className="absolute">
+                        <ClipLoader color="#000080" size={40} />
+                      </div>
+                    )}
                     <img
                       src={servicio.imagenFrontal.url}
                       alt={servicio.titulo}
-                      className="w-40 sm:w-44 lg:w-48 object-cover object-center"
+                      className={`w-40 sm:w-44 lg:w-48 object-cover object-center transition-opacity duration-300 ${
+                        imagenesCargadas[index] ? "opacity-100" : "opacity-0"
+                      }`}
+                      onLoad={() => handleImageLoad(index)}
                     />
                   </div>
+
                   {/* Reverso */}
                   <div className="absolute w-full h-full bg-[#131837] text-white flex flex-col items-center justify-center rounded-lg shadow-lg backface-hidden transform rotate-y-180">
                     <p className="text-center p-4">{servicio.titulo}</p>
-                    <Link to={`${servicio.titulo.toLowerCase().replace(/\s+/g, '')}`}>
-                    <button className="bg-red-700 hover:bg-red-800 py-2 px-4 rounded-xl text-md font-semibold cursor-pointer">
+                    <Link
+                      to={`${servicio.titulo.toLowerCase().replace(/\s+/g, "")}`}
+                    >
+                      <button className="bg-red-700 hover:bg-red-800 py-2 px-4 rounded-xl text-md font-semibold cursor-pointer">
                         Saber más...
                       </button>
                     </Link>

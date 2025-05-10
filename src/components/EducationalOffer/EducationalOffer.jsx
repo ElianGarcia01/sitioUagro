@@ -17,7 +17,8 @@ import { normalizeText } from "../normalizeText/normalizeText";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {getNivelesSuperiores} from  "../../services/api"
+import { getNivelesSuperiores } from "../../services/api";
+import { ClipLoader } from "react-spinners";
 
 function EducationalOffer() {
   const [schools, setSchools] = useState([]);
@@ -42,7 +43,7 @@ function EducationalOffer() {
       try {
         const response = await getNivelesSuperiores();
         console.log(response);
-        
+
         const schoolData = response.data.docs.reverse();
         setSchools(schoolData);
 
@@ -215,6 +216,11 @@ function EducationalOffer() {
                   src={school.imagen.url}
                   alt={school.nombre}
                   className="w-42 h-42 md:w-full md:h-full object-contain"
+                  placeholder={
+                    <div className="flex justify-center items-center w-full h-full">
+                      <ClipLoader color="#1e3a8a" size={40} />
+                    </div>
+                  }
                 />
               </div>
 
