@@ -15,7 +15,6 @@ export default function Inicio() {
     "El H. Consejo Universitario como máximo órgano de gobierno es la instancia en la que se analizan, discuten y acuerdan los asuntos institucionales fundamentales de nuestra institución, en los distintos ámbitos de la vida universitaria.";
   let ValoresUagroMensaje =
     '"Valores UAGro" es una campaña integral diseñada para inspirar y fortalecer los valores fundamentales entre los estudiantes universitarios del estado de Guerrero. Con el objetivo de cultivar una comunidad académica comprometida y ética, la campaña se centra en promover la integridad, la responsabilidad, el respeto y la solidaridad';
-
   return (
     <>
       <section className="bg-[#131837] text-white px-16">
@@ -200,5 +199,5 @@ export default function Inicio() {
         </div>
       </section>
     </>
-  )
+  );
 }
