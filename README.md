@@ -64,7 +64,7 @@ src/
 
 🧭 Navegación y diseño responsivo
 
-La navegación está gestionada por React Router v7 con rutas declaradas en routes/index.js.
+La navegación está gestionada por React Router v7 con rutas declaradas en routes/index.jsx.
 
 El diseño se adapta automáticamente a dispositivos móviles y de escritorio mediante clases utilitarias de Tailwind. También se implementan buenas prácticas como:
 
@@ -132,8 +132,6 @@ Esto creará la carpeta dist/.
 
 📁 Archivos importantes
 
-    tailwind.config.js → Configuración extendida de Tailwind
-
     .env → Variables de entorno
 
     .eslintrc → Reglas de calidad de código
@@ -142,4 +140,4 @@ Esto creará la carpeta dist/.
 
 👤 Autor
 
-Este proyecto fue desarrollado por Elian Garcia Tellez (ElianDev). Si tienes dudas o deseas colaborar, ¡siéntete libre de abrir un issue o un pull request!
+Este proyecto fue desarrollado por Elian Garcia Tellez (ElianDev). Si tienes dudas o deseas colaborar, siéntete libre de abrir un issue o un pull request.

@@ -13,7 +13,6 @@ import ButtonCartel from "../ButtonCartel/ButtonCartel";
 import ShareButtonF from "../ShareButton/ShareButtonF";
 import ShareButtonW from "../ShareButton/ShareButtonW";
 import { FiSearch } from "react-icons/fi";
-import { normalizeText } from "../normalizeText/normalizeText";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
