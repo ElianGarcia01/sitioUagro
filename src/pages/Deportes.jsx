@@ -5,69 +5,24 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import { useEffect, useState } from "react";
-import { getDestacadosDeportes } from "../services/api";
-import { getPaginasSecciones } from "../services/api";
-import { getTalentos } from "../services/api";
+import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useSelector } from "react-redux";
 
 export default function Deportes() {
   const [activeCard, setActiveCard] = useState(null);
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [pages, setPage] = useState([]);
-  const [talents, setTalents] = useState([]);
   const [imgLoaded, setImgLoaded] = useState(false); // Estado de carga para cada imagen
 
-  useEffect(() => {
-    const getDataNews = async () => {
-      try {
-        const response = await getDestacadosDeportes();
-        const newsData = response.data.docs;
-        setNews(newsData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // const dispatch = useDispatch();
+  const { sportState } = useSelector((state) => state.sports);
+  const { talentState } = useSelector((state) => state.sports);
+  const { featuredSportState } = useSelector((state) => state.sports);
 
-    getDataNews();
-  }, []);
-
-  useEffect(() => {
-    const getDataPage = async () => {
-      try {
-        const response = await getPaginasSecciones();
-        const PageData = response.data.docs;
-        setPage(PageData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getDataPage();
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await getTalentos();
-        const ReponseData = response.data.docs;
-        setTalents(ReponseData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getData();
-  }, []);
+  const { sports } = sportState;
+  const { talents } = talentState;
+  const { featureds } = featuredSportState; 
 
   return (
     <>
@@ -79,9 +34,9 @@ export default function Deportes() {
             "url('https://uagro.mx/images/derportes/header-deportes.webp') ",
         }}
       >
-        {pages.length > 0 && pages[0].Pagina ? (
+        {sports.length > 0 && sports[0].Pagina ? (
           <h1 className="text-white lg:py-4 px-8 lg:px-13 rounded-2xl bg-[#050d3c] text-xl lg:text-7xl font-bold italic text-center">
-            {pages[0].Pagina}
+            {sports[0].Pagina}
           </h1>
         ) : (
           <div className="flex justify-center items-center mb-10">
@@ -111,9 +66,9 @@ export default function Deportes() {
 
         {/* Descripcion */}
         <div className="w-3/5">
-          {pages.length > 0 && pages[0].Seccion[0]?.descripcion ? (
+          {sports.length > 0 && sports[0].Seccion[0]?.descripcion ? (
             <h1 className="text-white text-center text-md lg:text-xl">
-              {pages[0].Seccion[0].descripcion}
+              {sports[0].Seccion[0].descripcion}
             </h1>
           ) : (
             <Skeleton
@@ -209,9 +164,9 @@ export default function Deportes() {
         }}
       >
         <div className="text-white w-full lg:w-3/5 px-4">
-          {pages.length > 0 && pages[0].Seccion[1]?.nombre ? (
+          {sports.length > 0 && sports[0].Seccion[1]?.nombre ? (
             <h3 className="text-3xl lg:text-5xl italic font-semibold text-center my-4 lg:my-10">
-              {pages[0].Seccion[1].nombre}
+              {sports[0].Seccion[1].nombre}
             </h3>
           ) : (
             <div className="flex justify-center items-center my-4 lg:my-10">
@@ -225,9 +180,9 @@ export default function Deportes() {
               />
             </div>
           )}
-          {pages.length > 0 && pages[0].Seccion[1]?.descripcion ? (
+          {sports.length > 0 && sports[0].Seccion[1]?.descripcion ? (
             <p className="py-6 border-t-4 text-md lg:text-2xl font-light text-justify whitespace-pre-line">
-              {pages[0].Seccion[1].descripcion}
+              {sports[0].Seccion[1].descripcion}
             </p>
           ) : (
             <Skeleton
@@ -243,9 +198,9 @@ export default function Deportes() {
 
       {/* Sección de video */}
       <section className="h-[60vh] lg:h-[90vh] bg-blue-950 flex flex-col items-center justify-center px-4">
-        {pages.length > 0 && pages[0].Seccion[2]?.nombre ? (
+        {sports.length > 0 && sports[0].Seccion[2]?.nombre ? (
           <h2 className="text-white text-2xl lg:text-3xl font-semibold mb-10">
-            {pages[0].Seccion[2].nombre}
+            {sports[0].Seccion[2].nombre}
           </h2>
         ) : (
           <div className="flex justify-center items-center mb-10">
@@ -279,9 +234,9 @@ export default function Deportes() {
           backgroundImage: "url('assets/deportes-fondo.webp') ",
         }}
       >
-        {pages.length > 0 && pages[0].Seccion[3]?.nombre ? (
+        {sports.length > 0 && sports[0].Seccion[3]?.nombre ? (
           <h3 className="bg-red-500 text-white text-4xl lg:text-4xl font-bold py-2 px-20 rounded-xl mb-10">
-            {pages[0].Seccion[3].nombre}
+            {sports[0].Seccion[3].nombre}
           </h3>
         ) : (
           <div className="flex justify-center items-center mb-10">
@@ -309,7 +264,7 @@ export default function Deportes() {
               disableOnInteraction: false, // sigue moviéndose aunque el usuario interactúe
             }}
           >
-            {news.map((noticia) => (
+            {featureds.map((noticia) => (
               <SwiperSlide key={noticia._id}>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   {/* Imagen */}

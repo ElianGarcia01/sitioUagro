@@ -7,12 +7,10 @@ import { ClipLoader } from "react-spinners";
 import { useSelector } from "react-redux";
 import { statusHttp } from "../../redux/reducers/EduReducer";
 
-
 const CardFlip = () => {
   const [imagenesCargadas, setImagenesCargadas] = useState({}); // Estado para controlar cada imagen
   const { servicesState } = useSelector((state) => state.school)
   const { services, status } = servicesState
-
   const [flippedCard, setFlippedCard] = useState(null);
 
   const handleCardClick = (cardId) => {
