@@ -84,7 +84,7 @@ function Header() {
     <>
       {/* PRIMERA SECTION DEL HEADER (TONO AZUL BAJO) */}
       <section
-        className="w-full h-1/3 lg:h-full bg-blue-800/70 flex flex-col lg:flex-row
+        className="w-full h-1/3 lg:h-full bg-[#2e456e] flex flex-col lg:flex-row
             gap-4 justify-center items-center md:justify-between px-8 font-light text-white"
       >
         <ul className="flex space-x-4 justify-center items-center">
@@ -149,8 +149,8 @@ function Header() {
 
       <nav className="w-full h-full text-white font-stretch-normal flex flex-col items-center justify-center sticky top-0 z-50">
         {/* SEGUNDA SECCION DEL HEADER (AZUL TONO ALTO) */}
-        <section className="w-full h-auto bg-[#131837]">
-          <div className="w-full h-full flex justify-between items-center bg-[#131837] py-4 lg:py-0 px-4 lg:px-16 relative">
+        <section className="w-full h-auto">
+          <div className="w-full h-full flex justify-between items-center bg-[#192a48] py-4 lg:py-0 px-4 lg:px-16 relative">
             {/* LOGO */}
             <Link
               to=""
@@ -216,7 +216,7 @@ function Header() {
                         end
                         className={({ isActive }) =>
                           isActive
-                            ? "text-red-500"
+                            ? "text-gray-500"
                             : "text-white hover:text-red-500 transition-colors duration-500"
                         }
                       >

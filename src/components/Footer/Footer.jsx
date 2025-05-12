@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -11,7 +10,7 @@ import MapFooter from "../MapFooter/MapFooter";
 
 function Footer() {
   return (
-    <footer className="text-md bg-[#131837] text-white flex flex-col justify-between gap-8 p-5 lg:p-10">
+    <footer className="text-md bg-[#192a48] text-white flex flex-col justify-between gap-8 p-5 lg:p-10">
       {/* INFORMACION DE CONTACTO */}
       <div className="w-full h-full flex flex-col justify-evenly items-center lg:flex-row gap-8">
         <ul className="space-y-4 text-justify w-full h-full">
@@ -31,13 +30,9 @@ function Footer() {
           </li>
         </ul>
 
-                <div className="w-full h-full lg:w-5xl flex justify-center items-center">
-
-
-                    <MapFooter address="Rectoría | UAGro" />
-
-
-                </div>
+        <div className="w-full h-full lg:w-5xl flex justify-center items-center">
+          <MapFooter address="Rectoría | UAGro" />
+        </div>
       </div>
 
       {/* INFORMACION DE REDES SOCIALES */}

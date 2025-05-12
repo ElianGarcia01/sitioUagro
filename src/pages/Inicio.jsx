@@ -17,7 +17,7 @@ export default function Inicio() {
     '"Valores UAGro" es una campaña integral diseñada para inspirar y fortalecer los valores fundamentales entre los estudiantes universitarios del estado de Guerrero. Con el objetivo de cultivar una comunidad académica comprometida y ética, la campaña se centra en promover la integridad, la responsabilidad, el respeto y la solidaridad';
   return (
     <>
-      <section className="bg-[#131837] text-white px-16">
+      <section className="bg-[#192a48] text-white px-16">
         {/* Segunda lista de navegacion */}
         <ul className="hidden h-full w-full lg:flex flex-row justify-end items-center">
           <li className="bg-red-800 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
