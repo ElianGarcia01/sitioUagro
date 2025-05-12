@@ -105,11 +105,21 @@ function EducationalOffer() {
             </div>
           ))}
         </div>
+      ) : filteredSchools.length === 0 ? (
+        // Muestra el mensaje cuando no hay resultados
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <FaRegFrown size={48} className="text-gray-500 mb-4" />
+          <p className="text-xl md:text-2xl font-semibold text-gray-700">
+            No se encontraron resultados para tu búsqueda.
+          </p>
+          <p className="text-sm text-gray-500 mt-2">
+            Intenta con otro término o selecciona otra región.
+          </p>
+        </div>
       ) : (
         filteredSchools.map((school) => (
           <div key={school._id} className="w-full mb-6">
             <div className="w-full shadow-2xl rounded-2xl p-4 md:p-6 flex flex-col md:flex-row">
-              
               {/* Licenciaturas */}
               <div className="w-full md:w-2/5 px-2 py-2 md:px-4 md:py-4">
                 <div className="flex items-center">
