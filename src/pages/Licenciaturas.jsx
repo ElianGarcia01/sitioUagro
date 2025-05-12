@@ -1,23 +1,6 @@
-import { useEffect } from "react";
 import EducationalOffer from "../components/EducationalOffer/EducationalOffer";
-import { useDispatch, useSelector } from "react-redux";
-import { getSchools } from "../redux/actions/EduActions";
-import { statusHttp } from "../redux/reducers/EduReducer";
 
 export default function Licenciaturas() {
-
-  const {status} = useSelector((state) => state.school.schoolsState)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (status !== statusHttp.IDLE) {
-      return
-    }
-   
-    dispatch(getSchools())
-  }, [dispatch, status])
-
-
   return (
     <>
       {/* BANNER NIVEL LICENCIATURA */}

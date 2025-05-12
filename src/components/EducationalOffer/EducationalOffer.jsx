@@ -25,21 +25,25 @@ import { changeRegion, changeSearch } from "../../redux/actions/EduActions";
 import { statusHttp } from "../../redux/reducers/EduReducer";
 import { useMemo } from "react";
 
-
 function EducationalOffer() {
   const dispatch = useDispatch();
   const { schoolsState, region, search } = useSelector((state) => state.school);
   const { schools, status } = schoolsState;
 
   const uniquesRegions = useMemo(() => {
-    const regionesSet = new Set(schools.map((s) => s.region?.nombre || "Sin región"));
+    const regionesSet = new Set(
+      schools.map((s) => s.region?.nombre || "Sin región")
+    );
     return [...regionesSet].sort();
   }, [schools]);
 
   const filteredSchools = useMemo(() => {
     return schools.filter((school) => {
-      const matchSearch = normalizeText(school.nivelSuperior).includes(normalizeText(search));
-      const matchRegion = region === "Todas" || region === "" || school.region?.nombre === region;
+      const matchSearch = normalizeText(school.nivelSuperior).includes(
+        normalizeText(search)
+      );
+      const matchRegion =
+        region === "Todas" || region === "" || school.region?.nombre === region;
       return matchSearch && matchRegion;
     });
   }, [schools, region, search]);
@@ -49,7 +53,10 @@ function EducationalOffer() {
       {/* Regiones */}
       <div className="w-full py-4 overflow-x-auto">
         <div className="min-h-full flex justify-center items-center space-x-2 py-2 w-max min-w-full">
-          {(uniquesRegions.length === 0 ? [""] : ["Todas", ...uniquesRegions]).map((reg, i) =>
+          {(uniquesRegions.length === 0
+            ? Array(8).fill(null) // Mostrar 7 skeletons
+            : ["Todas", ...uniquesRegions]
+          ).map((reg, i) =>
             uniquesRegions.length === 0 ? (
               <Skeleton key={i} height={40} width={100} />
             ) : (
@@ -58,7 +65,9 @@ function EducationalOffer() {
                 value={reg}
                 onClick={(e) => dispatch(changeRegion(e.target.value))}
                 className={`font-semibold px-3 py-2 rounded-lg cursor-pointer transition-colors text-sm md:text-base whitespace-nowrap ${
-                  region === reg ? "bg-gray-100 text-gray-800 shadow-md" : "bg-gray-300 hover:bg-gray-200 text-gray-800"
+                  region === reg
+                    ? "bg-gray-100 text-gray-800 shadow-md"
+                    : "bg-gray-300 hover:bg-gray-200 text-gray-800"
                 }`}
               >
                 {reg}
@@ -86,7 +95,10 @@ function EducationalOffer() {
       {status === statusHttp.PENDING ? (
         <div className="space-y-6 mt-6">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="flex flex-col md:flex-row gap-4 md:gap-6 p-4">
+            <div
+              key={i}
+              className="flex flex-col md:flex-row gap-4 md:gap-6 p-4"
+            >
               <Skeleton circle height={48} width={48} />
               <div className="flex-1 space-y-3">
                 <Skeleton height={24} width="60%" />
@@ -108,22 +120,36 @@ function EducationalOffer() {
                   </h3>
                   <FaGraduationCap className="ml-2" size={24} />
                 </div>
-                <h4 className="text-lg md:text-xl font-semibold mb-2">Programa Educativo</h4>
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
+                  Programa Educativo
+                </h4>
                 <div className="space-y-1 mb-4">
                   {school.licenciaturas?.map((lic, i) => (
                     <div key={i} className="flex items-baseline">
                       <FaCircle className="mr-2 text-black" size={8} />
-                      <span className="text-black text-sm md:text-base">{lic.nombre}</span>
+                      <span className="text-black text-sm md:text-base">
+                        {lic.nombre}
+                      </span>
                     </div>
                   ))}
                 </div>
                 <div className="flex flex-col space-y-3 items-start">
                   <ButtonCartel />
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
-                    <h3 className="text-lg md:text-xl font-semibold">Compartir:</h3>
+                    <h3 className="text-lg md:text-xl font-semibold">
+                      Compartir:
+                    </h3>
                     <div className="flex gap-2">
-                      <ShareButtonF url="https://dgtidweb.uagro.mx/ejemplo/OfertaSuperior/CIENCIAS_ECONOMICAS.pdf" title="Oferta Educativa Especial" size={24} />
-                      <ShareButtonW url="https://dgtidweb.uagro.mx/ejemplo/OfertaSuperior/CIENCIAS_ECONOMICAS.pdf" title="Oferta Educativa Especial" size={24} />
+                      <ShareButtonF
+                        url="https://dgtidweb.uagro.mx/ejemplo/OfertaSuperior/CIENCIAS_ECONOMICAS.pdf"
+                        title="Oferta Educativa Especial"
+                        size={24}
+                      />
+                      <ShareButtonW
+                        url="https://dgtidweb.uagro.mx/ejemplo/OfertaSuperior/CIENCIAS_ECONOMICAS.pdf"
+                        title="Oferta Educativa Especial"
+                        size={24}
+                      />
                     </div>
                   </div>
                 </div>
@@ -134,27 +160,96 @@ function EducationalOffer() {
                 <LazyLoadImage
                   src={school.imagen.url}
                   alt={school.nombre}
-                  className="w-42 h-42 md:w-full md:h-full object-contain"
-                  placeholder={<div className="flex justify-center items-center w-full h-full"><ClipLoader color="#1e3a8a" size={40} /></div>}
+                  className="w-44 h-44 md:w-full md:h-full object-contain"
+                  placeholder={
+                    <div className="flex justify-center items-center w-full h-full">
+                      <ClipLoader color="#1e3a8a" size={40} />
+                    </div>
+                  }
                 />
               </div>
 
-              {/* Contacto */}
-              <div className="w-full md:flex-1 px-2 py-2 md:ml-4 flex flex-col">
-                <h2 className="text-lg md:text-xl font-bold mb-2">
-                  Contacto <FaAddressBook className="inline-block ml-2" size={18} />
+              {/* Información de contacto - Responsiva */}
+              <div className="w-full md:flex-1 px-2 py-2 md:ml-4 order-3 md:order-none flex flex-col justify-start items-start">
+                <h2 className="text-lg md:text-xl font-bold text-center inline-block items-center mb-2 min-w-full">
+                  Contacto
+                  <FaAddressBook className="ml-2 inline-block" size={18} />
                 </h2>
                 <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
-                  {Object.entries(school.contacto || {}).map(([label, value]) => (
-                    <li key={label} className="flex items-start md:items-center">
-                      <span className="mr-2 flex-shrink-0">{label === "sitio web" ? <FaGlobe size={14} /> : label === "teléfono" ? <FaPhone size={14} /> : label === "correo" ? <FaEnvelope size={14} /> : null}</span>
-                      <span className="break-words">{value}</span>
-                    </li>
-                  ))}
+                  <li className="flex items-start md:items-center">
+                    <FaGlobe
+                      className="mr-2 mt-1 md:mt-0 flex-shrink-0"
+                      size={14}
+                    />
+                    <a
+                      href={`https://${school.contacto["sitio web"]}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="break-all"
+                    >
+                      {school.contacto.sitioWeb}
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <FaPhone className="mr-2 flex-shrink-0" size={14} />
+                    <a href={`tel:${school.contacto.telefono}`}>
+                      {school.contacto.telefono}
+                    </a>
+                  </li>
+                  <li className="flex items-start md:items-center">
+                    <FaEnvelope
+                      className="mr-2 mt-1 md:mt-0 flex-shrink-0"
+                      size={14}
+                    />
+                    <a
+                      href={`mailto:${school.contacto.email}`}
+                      className="break-all"
+                    >
+                      {school.contacto.email}
+                    </a>
+                  </li>
+                  <li className="flex items-start">
+                    <FaMapMarkedAlt
+                      className="mr-2 mt-1 flex-shrink-0"
+                      size={14}
+                    />
+                    <span>{school.contacto.direccion}</span>
+                  </li>
                 </ul>
+
+                {/* Redes sociales */}
+                <div className="flex space-x-3 mt-3">
+                  <a href="#" className="text-blue-600">
+                    <FaFacebook size={20} />
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://brandlogos.net/wp-content/uploads/2023/07/x__twitter-logo_brandlogos.net_fxbde.png"
+                      alt="X Logo"
+                      className="w-5 h-5"
+                    />
+                  </a>
+                </div>
               </div>
 
-              
+              {/* Mapa - Responsivo */}
+              <div className="w-full md:w-1/5 order-4 mt-4 md:mt-0 flex flex-col justify-start py-2 items-center">
+                <h2 className="text-lg md:text-xl font-bold flex items-center justify-center md:justify-start mb-2">
+                  Ubicación
+                  <FaLocationDot className="ml-2" size={18} />
+                </h2>
+                <div className="w-full h-40 md:h-48">
+                  <MapFooter address={school.ubicacion} />
+                </div>
+                <h3 className="text-center md:text-left mt-4 text-sm md:text-base">
+                  Región:{" "}
+                  <span className="text-red-500">{school.region.nombre}</span>
+                </h3>
+              </div>
             </div>
           </div>
         ))

@@ -9,7 +9,7 @@ const getSchools = createAsyncThunk("school/getSchools", async () => {
   const response = await axios.get(
     "https://strapi.uagro.mx/api/niveles-superiores?limit=50"
   );
-  return response.data.docs
+return [...response.data.docs].reverse();
 });
 
 export { getSchools, changeSearch, changeRegion };
