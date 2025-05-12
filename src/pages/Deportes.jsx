@@ -19,7 +19,7 @@ export default function Deportes() {
   const { featuredSportState } = useSelector((state) => state.sports);
   const { sports } = sportState;
   const { talents } = talentState;
-  const { featureds } = featuredSportState; 
+  const { featureds } = featuredSportState;
 
   return (
     <>
@@ -248,24 +248,38 @@ export default function Deportes() {
           </div>
         )}
 
-        <div className="w-full max-w-4xl">
+        <div className="w-full px-6">
           <Swiper
-            modules={[Pagination, Navigation, Autoplay]} // 👈 incluye Navigation
+            modules={[Pagination, Navigation, Autoplay]}
             spaceBetween={30}
-            slidesPerView={1}
+            slidesPerView={3}
             pagination={{ clickable: true }}
-            navigation={true} // 👈 activa flechas
-            loop={true} // 👈 activa loop infinito
+            navigation={true}
+            loop={true}
             autoplay={{
-              delay: 4000, // cambia de slide cada 4 segundos
-              disableOnInteraction: false, // sigue moviéndose aunque el usuario interactúe
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              // cuando la pantalla es >= 1024px
+              1024: {
+                slidesPerView: 3,
+              },
+              // cuando la pantalla es >= 768px
+              768: {
+                slidesPerView: 2,
+              },
+              // para pantallas pequeñas (<768px)
+              0: {
+                slidesPerView: 1,
+              },
             }}
           >
             {featureds.map((noticia) => (
               <SwiperSlide key={noticia._id}>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="flex flex-col bg-white mb-10 rounded-lg shadow-md overflow-hidden h-full">
                   {/* Imagen */}
-                  <div className="w-full h-full flex justify-center items-center relative">
+                  <div className="w-full h-[50vh] flex items-center justify-center relative">
                     {!imgLoaded && (
                       <div className="absolute">
                         <ClipLoader color="#000080" size={40} />
@@ -275,21 +289,25 @@ export default function Deportes() {
                     <img
                       src={noticia.image.url}
                       alt={noticia.title}
-                      className={`w-full h-[70vh] object-top object-cover transition-opacity duration-500 ${
+                      className={`w-full h-full object-cover object-top transition-opacity duration-500 ${
                         imgLoaded ? "opacity-100" : "opacity-0"
                       }`}
                       onLoad={() => setImgLoaded(true)}
                     />
                   </div>
 
-                  <div className="p-6  text-center">
-                    <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+                  {/* Cuerpo de la tarjeta */}
+                  <div className="p-4 flex flex-col justify-between h-[30vh]">
+                    <h5 className="text-lg text-center font-semibold text-gray-800 mb-2">
                       {noticia.title}
-                    </h3>
-                    <p className="text-gray-600">
+                    </h5>
+                    <p className="text-sm text-gray-600 flex-1">
                       {noticia.description.length > 120
                         ? noticia.description.slice(0, 110) + "..."
                         : noticia.description}
+                    </p>
+                    <p className="text-xs font-bold text-black mt-2">
+                      Última modificación: {noticia.updatedAt.slice(0, 10)}
                     </p>
                   </div>
                 </div>
