@@ -4,7 +4,7 @@ import Footer from "../components/Footer/Footer";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSchools } from "../redux/actions/EduActions";
+import { getSchools, getServices } from "../redux/actions/EduActions";
 import { statusHttp } from "../redux/reducers/EduReducer";
 
 export default function InicioLayout() {
@@ -12,11 +12,10 @@ export default function InicioLayout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status !== statusHttp.IDLE) {
-      return;
-    }
+    if (status !== statusHttp.IDLE) return;
 
     dispatch(getSchools());
+    dispatch(getServices());
   }, [dispatch, status]);
 
   return (
