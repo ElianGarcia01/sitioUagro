@@ -14,12 +14,9 @@ import { useSelector } from "react-redux";
 export default function Deportes() {
   const [activeCard, setActiveCard] = useState(null);
   const [imgLoaded, setImgLoaded] = useState(false); // Estado de carga para cada imagen
-
-  // const dispatch = useDispatch();
   const { sportState } = useSelector((state) => state.sports);
   const { talentState } = useSelector((state) => state.sports);
   const { featuredSportState } = useSelector((state) => state.sports);
-
   const { sports } = sportState;
   const { talents } = talentState;
   const { featureds } = featuredSportState; 

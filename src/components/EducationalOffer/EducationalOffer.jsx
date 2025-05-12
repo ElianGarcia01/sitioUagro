@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import MapFooter from "../MapFooter/MapFooter";
 import {
   FaAddressBook,
@@ -110,6 +109,7 @@ function EducationalOffer() {
         filteredSchools.map((school) => (
           <div key={school._id} className="w-full mb-6">
             <div className="w-full shadow-2xl rounded-2xl p-4 md:p-6 flex flex-col md:flex-row">
+              
               {/* Licenciaturas */}
               <div className="w-full md:w-2/5 px-2 py-2 md:px-4 md:py-4">
                 <div className="flex items-center">
@@ -131,10 +131,10 @@ function EducationalOffer() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col space-y-3 items-start">
+                <div className="flex flex-col space-y-3 items-center md:items-start">
                   <ButtonCartel />
-                  <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
-                    <h3 className="text-lg md:text-xl font-semibold">
+                  <div className="flex flex-col md:flex-row items-center md:items-center gap-2">
+                    <h3 className="text-lg md:text-xl font-semibold text-center">
                       Compartir:
                     </h3>
                     <div className="flex gap-2">
