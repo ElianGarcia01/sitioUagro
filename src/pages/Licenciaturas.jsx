@@ -5,7 +5,7 @@ export default function Licenciaturas() {
     <>
       {/* BANNER NIVEL LICENCIATURA */}
       <section
-        className="h-[7.5vh] lg:h-[28.5vh] bg-contain bg-no-repeat"
+        className="h-12 lg:h-56 w-full bg-cover flex justify-center items-center"
         style={{
           backgroundImage:
             "url('https://dgtidweb.uagro.mx/ejemplo/images/2024/10/23/head-superior.jpg') ",
