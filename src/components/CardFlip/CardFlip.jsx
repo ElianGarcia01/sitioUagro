@@ -2,7 +2,7 @@ import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./CardFlip.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useSelector } from "react-redux";
 import { statusHttp } from "../../redux/reducers/EduReducer";
@@ -84,7 +84,7 @@ const CardFlip = () => {
                   <div className="absolute w-full h-full bg-[#131837] text-white flex flex-col items-center justify-center rounded-lg shadow-lg backface-hidden transform rotate-y-180">
                     <p className="text-center p-4">{service.titulo}</p>
                     <Link
-                      to={`${service.titulo.toLowerCase().replace(/\s+/g, "")}`}
+                      to={`${service.url}`}
                     >
                       <button className="bg-red-700 hover:bg-red-800 py-2 px-4 rounded-xl text-md font-semibold cursor-pointer">
                         Saber más...

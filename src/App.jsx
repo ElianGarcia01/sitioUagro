@@ -10,6 +10,7 @@ import HConsejo from "./pages/HConsejo";
 import AdministracionCentral from "./pages/AdministracionCentral";
 import ValoresUagro from "./pages/ValoresUagro";
 import Deportes from "./pages/Deportes";
+import Estudiantes from "./pages/Estudiantes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSchools, getServices } from "./redux/actions/EduActions";
@@ -19,6 +20,11 @@ import {
   getTalents,
 } from "./redux/actions/SportsActions";
 import { statusHttp } from "./redux/reducers/EduReducer";
+import Trabajadores from "./pages/Trabajadores";
+import ModalidadVirtual from "./pages/ModalidadVirtual";
+import PSU from "./pages/PSU";
+import Tec_Bach_Univ from "./pages/Tec_Bach_Univ";
+import Bachillerato from "./pages/Bachillerato";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,7 +50,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/frontend",
-      element: <InicioLayout />, // Usamos el nuevo componente Root en lugar de InicioLayout directamente
+      element: <InicioLayout />,
       children: [
         {
           path: "",
@@ -55,6 +61,22 @@ function App() {
           element: <Conocenos />,
         },
         {
+          path: "H.C.U",
+          element: <HConsejo />,
+        },
+        {
+          path: "Bachillerato",
+          element: <Bachillerato />,
+        },
+        {
+          path: "Tec_Bach_Univ",
+          element: <Tec_Bach_Univ />,
+        },
+        {
+          path: "PSU",
+          element: <PSU />,
+        },
+        {
           path: "Licenciaturas",
           element: <Licenciaturas />,
         },
@@ -63,8 +85,8 @@ function App() {
           element: <Posgrados />,
         },
         {
-          path: "HConsejoUniversitario",
-          element: <HConsejo />,
+          path: "ModalidadVirtual",
+          element: <ModalidadVirtual />,
         },
         {
           path: "AdministracionCentral",
@@ -73,6 +95,14 @@ function App() {
         {
           path: "ValoresUagro",
           element: <ValoresUagro />,
+        },
+        {
+          path: "estudiantes",
+          element: <Estudiantes />,
+        },
+        {
+          path: "trabajadores",
+          element: <Trabajadores />,
         },
         {
           path: "deportes",

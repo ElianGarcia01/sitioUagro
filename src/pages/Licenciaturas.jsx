@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import EducationalOffer from "../components/EducationalOffer/EducationalOffer";
 
 export default function Licenciaturas() {
@@ -14,21 +15,21 @@ export default function Licenciaturas() {
 
       {/* SECCION DE BUSQUEDA */}
       <section className="flex flex-col lg:flex-row gap-8 px-12 h-full w-full py-4">
-        <a href="" className="w-full h-full">
+        <a href="https://ofertaeducativa.uagro.mx/" target="_blank" className="w-full h-full">
           <img
             src="https://dgtidweb.uagro.mx/ejemplo/images/2025/01/31/busqueavanzada-02.png"
             alt="Busqueda Avanzada"
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 hover:shadow-lg"
           />
         </a>
-        <a href="" className="w-full h-full">
+        <Link to="/TerritorioUagro" className="w-full h-full">
           <img
             src="https://dgtidweb.uagro.mx/ejemplo/images/2025/01/31/territoriouagro-02.png"
             alt="Territorio Uagro"
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 hover:shadow-lg"
           />
-        </a>
-        <a href="" className="w-full h-full">
+        </Link>
+        <a href="https://www.dges.uagro.mx/" target="_blank" className="w-full h-full">
           <img
             src="https://dgtidweb.uagro.mx/ejemplo/images/Licenciaturas/img_1.png"
             alt="Direccion General de Educacion Superior"

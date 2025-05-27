@@ -1,18 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaPhone,
-  FaEnvelope,
   FaBars,
   FaTimes,
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
 import { FaGraduationCap, FaUserGraduate } from "react-icons/fa";
-import { FaCircleUser, FaUserGear, FaUserPen } from "react-icons/fa6";
+import {
+  FaCircleUser,
+  FaMobileScreen,
+  FaUserGear,
+  FaUserPen,
+} from "react-icons/fa6";
 import "../Header/Header.css";
 import { Link } from "react-router-dom";
 
@@ -20,13 +21,17 @@ import { Link } from "react-router-dom";
 const routes = [
   { path: "/frontend/", name: "Inicio" },
   { path: "Conocenos", name: "Conocenos" },
-  { path: "HConsejoUniversitario", name: "H. Consejo Universitario" },
+  { path: "H.C.U", name: "H.C.U" },
   {
     path: "OfertaEducativa",
     name: "Oferta Educativa",
     submenu: [
+      { path: "Bachillerato", name: "Bachillerato" },
+      { path: "Tec_Bach_Univ", name: "Tec.Bach.Univ." },
+      { path: "PSU", name: "PSU" },
       { path: "Licenciaturas", name: "Licenciaturas" },
       { path: "Posgrados", name: "Posgrados" },
+      { path: "ModalidadVirtual", name: "Modalidad Virtual y Mixta" },
     ],
   },
   { path: "AdministracionCentral", name: "Administracion Central" },
@@ -85,32 +90,21 @@ function Header() {
       {/* PRIMERA SECTION DEL HEADER (TONO AZUL BAJO) */}
       <section
         className="w-full h-1/3 lg:h-full bg-[#2e456e] flex flex-col lg:flex-row
-            gap-4 justify-center items-center md:justify-between px-8 font-light text-white"
+            gap-4 justify-center items-center md:justify-between px-28 font-light text-white"
       >
         <ul className="flex space-x-4 justify-center items-center">
           <li>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/UAGro.MX.Oficial/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaFacebook className="inline-block mr-0" />
-              <span className="hidden lg:inline ml-2">Facebook</span>
             </a>
           </li>
           <li>
             <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className="inline-block mr-0" />
-              <span className="hidden lg:inline ml-2">Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://twitter.com"
+              href="https://x.com/uagro_mx"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -120,29 +114,16 @@ function Header() {
                 width="17"
                 className="inline-block mr-0"
               />
-              <span className="hidden lg:inline ml-2">(Twitter)</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaYoutube className="inline-block mr-0" />
-              <span className="hidden lg:inline ml-2">Youtube</span>
             </a>
           </li>
         </ul>
 
         <ul className="hidden md:flex flex-col md:flex-row justify-center items-center md:space-x-6 text-md font-light gap-4">
           <li className="flex items-center">
-            <FaPhone className="inline-block mr-2" />
-            Teléfono: 01 (747) 471-93-10 Ext. 3000
-          </li>
-          <li className="flex items-center">
-            <FaEnvelope className="inline-block mr-2" />
-            Email: rectoria@uagro.mx
+            <a href="tel:7474719310,3000">
+              <FaMobileScreen className="inline-block mr-2" />
+              01 (747) 471-93-10 Ext. 3000
+            </a>
           </li>
         </ul>
       </section>
@@ -195,13 +176,10 @@ function Header() {
                             onMouseLeave={handleLeaveMenu}
                           >
                             {route.submenu.map((subitem) => (
-                              <li
-                                key={subitem.path}
-                                className="py-2 px-4 hover:bg-red-500"
-                              >
+                              <li key={subitem.path} className="py-2 px-4">
                                 <NavLink
                                   to={subitem.path}
-                                  className="block text-white"
+                                  className="block text-white hover:text-red-500"
                                 >
                                   {subitem.name}
                                 </NavLink>

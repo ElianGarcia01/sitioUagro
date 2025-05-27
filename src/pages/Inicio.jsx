@@ -9,6 +9,8 @@ import Carousel from "../components/Carousel/Carousel";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaGraduationCap, FaUserGraduate } from "react-icons/fa";
 import { FaCircleUser, FaUserGear, FaUserPen } from "react-icons/fa6";
+import { Link, NavLink } from "react-router-dom";
+import "../css/Inicio.css";
 
 export default function Inicio() {
   let HConsejoMensaje =
@@ -21,40 +23,42 @@ export default function Inicio() {
         {/* Segunda lista de navegacion */}
         <ul className="hidden h-full w-full lg:flex flex-row justify-end items-center">
           <li className="bg-red-800 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
-            <a href="">
+            <a href="https://admisionescolar.uagro.mx/">
               <FaUserPen className="inline-block mr-2" />
               Aspirantes
             </a>
           </li>
           <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
-            <a href="">
+            <NavLink to="/frontend/estudiantes">
               <FaCircleUser className="inline-block mr-2" />
               Estudiantes
-            </a>
+            </NavLink>
           </li>
           <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
-            <a href="">
+            <a href="https://titulosygrados.uagro.mx/">
               <FaGraduationCap className="inline-block mr-2" />
               Titulacion
             </a>
           </li>
           <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
-            <a href="">
+            <a href="https://egresados.uagro.mx/">
               <FaUserGraduate className="inline-block mr-2" />
               Egresados
             </a>
           </li>
           <li className="bg-gray-500 py-1 px-5 hover:bg-red-800 transition-colors duration-500 border-x-1 border-black text-center">
-            <a href="">
+            <Link to="/frontend/trabajadores">
               <FaUserGear className="inline-block mr-2" />
               Trabajadores
-            </a>
+            </Link>
           </li>
         </ul>
       </section>
 
       {/* VIDEO SECTION */}
-      <section className="max-h-[50vh] h-screen md:max-h-[53vh] w-full object-cover relative border-t-4 border-red-400">
+      <section className="max-h-[50vh] h-screen md:max-h-[53vh] w-full object-cover relative">
+        {/* Línea animada como borde superior */}
+        <div className="absolute top-0 left-0 h-1 bg-red-500 animate-grow-bar z-1"></div>
         <video
           autoPlay
           muted
@@ -73,25 +77,29 @@ export default function Inicio() {
         <CardFlip />
       </section>
 
-      {/* BANNER IMAGE SECTION */}
-      <section
-        className="h-screen lg:h-[80vh] w-full flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat "
-        style={{
-          backgroundImage: `url(${Banner})`,
-        }}
-      >
-        {/* TÍTULO OFERTA EDUCATIVA */}
-        <div className="py-16 lg:py-24">
-          <img
-            src="https://dgtidweb.uagro.mx/ejemplo/images/2024/05/08/recurso-1.png"
-            alt="Oferta Educativa"
-            className="h-14 lg:h-28" // Ajusta el tamaño en pantallas pequeñas
-          />
-        </div>
+<section
+  className="h-[120vh] w-full flex flex-col justify-center items-center"
+  style={{
+    backgroundImage: `url(${Banner})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover", // O usa "100% 100%" si quieres estirarla
+    backgroundRepeat: "no-repeat"
+  }}
+>
+  {/* TÍTULO OFERTA EDUCATIVA */}
+  <div className="py-16 lg:py-24">
+    {/* Ajusta el tamaño en pantallas pequeñas */}
+    <img
+      src="https://dgtidweb.uagro.mx/ejemplo/images/2024/05/08/recurso-1.png"
+      alt="Oferta Educativa"
+      className="h-14 lg:h-28"
+    />
+  </div>
 
-        {/* CARDS COMPONENT */}
-        <CardOffer />
-      </section>
+  {/* CARDS COMPONENT */}
+  <CardOffer />
+</section>
+
 
       {/* SECCION H.CONSEJO UNIVERSITARIO */}
       <section

@@ -1,0 +1,12 @@
+@keyframes grow-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-grow-bar {
+  animation: grow-bar 6s ease-out forwards;
+}
