@@ -1,5 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { changeRegion, changeSearch, getSchools, getServices } from "../actions/EduActions";
+import {
+  changeRegion,
+  changeSearch,
+  getSchools,
+  getServices,
+  getOffers,
+} from "../actions/EduActions";
 
 export const statusHttp = {
   IDLE: "idle",
@@ -20,16 +26,23 @@ const servicesState = {
   error: null,
 };
 
+const offersState = {
+  offers: [],
+  status: statusHttp.IDLE,
+  error: null,
+};
+
 const initialState = {
   schoolsState: schoolsState,
   servicesState: servicesState,
+  offersState: offersState,
   region: "Todas",
   search: "",
 };
 
 export const EduReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeRegion, (state, action) => {
-    state.region = action.payload;   
+    state.region = action.payload;
   });
 
   builder.addCase(changeSearch, (state, action) => {
@@ -48,7 +61,7 @@ export const EduReducer = createReducer(initialState, (builder) => {
     state.schoolsState.status = statusHttp.FAILED;
     state.schoolsState.error = action.error;
   });
-    builder.addCase(getServices.fulfilled, (state, action) => {
+  builder.addCase(getServices.fulfilled, (state, action) => {
     state.servicesState.services = action.payload;
     state.servicesState.status = statusHttp.SUCCEEDED;
   });
@@ -61,4 +74,18 @@ export const EduReducer = createReducer(initialState, (builder) => {
     state.servicesState.status = statusHttp.FAILED;
     state.servicesState.error = action.error;
   });
+
+  builder.addCase(getOffers.fulfilled, (state, action) => {
+    state.offersState.offers = action.payload,
+    state.offersState.status = statusHttp.SUCCEEDED
+  });
+
+  builder.addCase(getOffers.pending, (state) => {
+    state.offersState.status = statusHttp.PENDING
+  })
+
+  builder.addCase(getOffers.rejected, (state, action) => {
+    state.offersState.status = statusHttp.FAILED,
+    state.offersState.error = action.error
+  })
 });

@@ -1,5 +1,9 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  ServerRouter,
+} from "react-router-dom";
 import InicioLayout from "./layouts/InicioLayout";
 import Inicio from "./pages/Inicio";
 import NotFound from "./pages/NotFound";
@@ -13,7 +17,7 @@ import Deportes from "./pages/Deportes";
 import Estudiantes from "./pages/Estudiantes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSchools, getServices } from "./redux/actions/EduActions";
+import { getOffers, getSchools, getServices } from "./redux/actions/EduActions";
 import {
   getFeaturedSports,
   getSports,
@@ -30,14 +34,27 @@ function App() {
   const dispatch = useDispatch();
 
   const schoolStatus = useSelector((state) => state.school.schoolsState.status);
+  const servicesStatus = useSelector((state) => state.school.servicesState.status);
   const sportsStatus = useSelector((state) => state.sports.sportState.status);
+  const offersStatus = useSelector((state) => state.school.servicesState.status)
 
   useEffect(() => {
     if (schoolStatus === statusHttp.IDLE) {
       dispatch(getSchools());
-      dispatch(getServices());
     }
   }, [dispatch, schoolStatus]);
+
+  useEffect(() => {
+    if (servicesStatus === statusHttp.IDLE) {
+      dispatch(getServices());
+    }
+  }, [dispatch, servicesStatus]);
+
+  useEffect(() => {
+    if (offersStatus === statusHttp.IDLE) {
+      dispatch(getOffers())
+    }
+  }, [dispatch, offersStatus])
 
   useEffect(() => {
     if (sportsStatus === statusHttp.IDLE) {
@@ -65,7 +82,7 @@ function App() {
           element: <HConsejo />,
         },
         {
-          path: "Bachillerato",
+          path: "Bachilleratos",
           element: <Bachillerato />,
         },
         {

@@ -20,4 +20,12 @@ const getServices = createAsyncThunk("school/getServices", async () => {
 return [...response.data.docs].reverse()
 });
 
-export { getSchools, changeSearch, changeRegion, getServices };
+// Peticion https para obtener la data de servies imagenes
+const getOffers = createAsyncThunk("school/getOffers", async () => {
+  const response = await axios.get(
+    "https://strapi.uagro.mx/api/oferta"
+  ) 
+return response.data.docs
+});
+
+export { getSchools, changeSearch, changeRegion, getServices, getOffers  };
