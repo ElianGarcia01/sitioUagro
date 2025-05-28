@@ -2,21 +2,22 @@ import { Link } from "react-router-dom";
 import EducationalOffer from "../components/EducationalOffer/EducationalOffer";
 import { useSelector } from "react-redux";
 
-export default function Licenciaturas() {
+export default function Bachillerato() {
   const { schoolsState, region, search } = useSelector((state) => state.school);
   const { schools, status } = schoolsState;
 
   return (
     <>
-      {/* BANNER NIVEL LICENCIATURA */}
+      {/* BANNER NIVEL BACHILLERATO */}
       <section
         className="h-12 lg:h-56 w-full bg-cover flex justify-center items-center"
         style={{
           backgroundImage:
-            "url('https://dgtidweb.uagro.mx/ejemplo/images/2024/10/23/head-superior.jpg') ",
+            "url('https://uagro.mx/images/2024/10/23/head-media-superior.jpg') ",
         }}
       ></section>
 
+      {/* Seccion Busquedas */}
       <section className="flex flex-col lg:flex-row gap-8 px-12 h-full w-full py-4">
         {/* Busqueda Avanzada */}
         <a
@@ -44,7 +45,7 @@ export default function Licenciaturas() {
           className="w-full h-full"
         >
           <img
-            src="https://uagro.mx/images/Licenciaturas/img_1.png"
+            src="https://uagro.mx/images/Bachilleratos/logo-dgems.png"
             alt="Direccion General de Educacion Superior"
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 hover:shadow-lg"
           />
@@ -52,12 +53,7 @@ export default function Licenciaturas() {
       </section>
 
       <section className="min-h-screen w-full">
-        <EducationalOffer
-          region={region}
-          search={search}
-          schools={schools}
-          status={status}
-        />
+        <EducationalOffer region={region} search={search} schools={schools} status={status} />
       </section>
     </>
   );

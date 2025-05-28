@@ -4,7 +4,6 @@ import Banner from "../assets/images/Banner.webp";
 import CardOffer from "../components/CardOffer/CardOffer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-import Message from "../components/Message/Message";
 import Carousel from "../components/Carousel/Carousel";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FaGraduationCap, FaUserGraduate } from "react-icons/fa";

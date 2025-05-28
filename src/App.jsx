@@ -1,8 +1,7 @@
 import "./App.css";
 import {
   createBrowserRouter,
-  RouterProvider,
-  ServerRouter,
+  RouterProvider
 } from "react-router-dom";
 import InicioLayout from "./layouts/InicioLayout";
 import Inicio from "./pages/Inicio";
@@ -28,7 +27,7 @@ import Trabajadores from "./pages/Trabajadores";
 import ModalidadVirtual from "./pages/ModalidadVirtual";
 import PSU from "./pages/PSU";
 import Tec_Bach_Univ from "./pages/Tec_Bach_Univ";
-import Bachillerato from "./pages/Bachillerato";
+import Bachillerato from "./pages/Bachilleratos";
 
 function App() {
   const dispatch = useDispatch();

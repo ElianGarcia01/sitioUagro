@@ -26,7 +26,7 @@ const routes = [
     path: "OfertaEducativa",
     name: "Oferta Educativa",
     submenu: [
-      { path: "Bachillerato", name: "Bachillerato" },
+      { path: "Bachilleratos", name: "Bachillerato" },
       { path: "Tec_Bach_Univ", name: "Tec.Bach.Univ." },
       { path: "PSU", name: "PSU" },
       { path: "Licenciaturas", name: "Licenciaturas" },

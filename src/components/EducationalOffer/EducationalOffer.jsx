@@ -17,15 +17,13 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ClipLoader } from "react-spinners";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeRegion, changeSearch } from "../../redux/actions/EduActions";
 import { statusHttp } from "../../redux/reducers/EduReducer";
 import { useMemo } from "react";
 
-function EducationalOffer() {
+function EducationalOffer({region, search, schools, status}) {
   const dispatch = useDispatch();
-  const { schoolsState, region, search } = useSelector((state) => state.school);
-  const { schools, status } = schoolsState;
 
   const uniquesRegions = useMemo(() => {
     const regionesSet = new Set(
