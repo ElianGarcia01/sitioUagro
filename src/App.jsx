@@ -1,8 +1,5 @@
 import "./App.css";
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import InicioLayout from "./layouts/InicioLayout";
 import Inicio from "./pages/Inicio";
 import NotFound from "./pages/NotFound";
@@ -16,7 +13,7 @@ import Deportes from "./pages/Deportes";
 import Estudiantes from "./pages/Estudiantes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOffers, getSchools, getServices } from "./redux/actions/EduActions";
+import { getBachilleratos, getOffers, getSchools, getServices } from "./redux/actions/EduActions";
 import {
   getFeaturedSports,
   getSports,
@@ -33,15 +30,26 @@ function App() {
   const dispatch = useDispatch();
 
   const schoolStatus = useSelector((state) => state.school.schoolsState.status);
-  const servicesStatus = useSelector((state) => state.school.servicesState.status);
+  const servicesStatus = useSelector(
+    (state) => state.school.servicesState.status
+  );
   const sportsStatus = useSelector((state) => state.sports.sportState.status);
-  const offersStatus = useSelector((state) => state.school.servicesState.status)
+  const offersStatus = useSelector(
+    (state) => state.school.servicesState.status
+  );
+  const bachStatus = useSelector((state) => state.school.bachState.status);
 
   useEffect(() => {
     if (schoolStatus === statusHttp.IDLE) {
       dispatch(getSchools());
     }
   }, [dispatch, schoolStatus]);
+
+  useEffect(() => {
+    if (bachStatus === statusHttp.IDLE) {
+      dispatch(getBachilleratos());
+    }
+  }, [dispatch, bachStatus]);
 
   useEffect(() => {
     if (servicesStatus === statusHttp.IDLE) {
@@ -51,9 +59,9 @@ function App() {
 
   useEffect(() => {
     if (offersStatus === statusHttp.IDLE) {
-      dispatch(getOffers())
+      dispatch(getOffers());
     }
-  }, [dispatch, offersStatus])
+  }, [dispatch, offersStatus]);
 
   useEffect(() => {
     if (sportsStatus === statusHttp.IDLE) {

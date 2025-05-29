@@ -5,7 +5,8 @@ import {
   getSchools,
   getServices,
   getOffers,
-} from "../actions/EduActions";
+  getBachilleratos,
+} from "../actions/EduActions"
 
 export const statusHttp = {
   IDLE: "idle",
@@ -16,6 +17,12 @@ export const statusHttp = {
 
 const schoolsState = {
   schools: [],
+  status: statusHttp.IDLE,
+  error: null,
+};
+
+const bachState = {
+  bachilleratos: [],
   status: statusHttp.IDLE,
   error: null,
 };
@@ -36,6 +43,7 @@ const initialState = {
   schoolsState: schoolsState,
   servicesState: servicesState,
   offersState: offersState,
+  bachState: bachState,
   region: "Todas",
   search: "",
 };
@@ -88,4 +96,17 @@ export const EduReducer = createReducer(initialState, (builder) => {
     state.offersState.status = statusHttp.FAILED,
     state.offersState.error = action.error
   })
+    builder.addCase(getBachilleratos.fulfilled, (state, action) => {
+    state.bachState.bachilleratos = action.payload;
+    state.bachState.status = statusHttp.SUCCEEDED;
+  });
+
+  builder.addCase(getBachilleratos.pending, (state) => {
+    state.bachState.status = statusHttp.PENDING;
+  });
+
+  builder.addCase(getBachilleratos.rejected, (state, action) => {
+    state.bachState.status = statusHttp.FAILED;
+    state.bachState.error = action.error;
+  });
 });

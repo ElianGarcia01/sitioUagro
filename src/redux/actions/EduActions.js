@@ -9,23 +9,29 @@ const getSchools = createAsyncThunk("school/getSchools", async () => {
   const response = await axios.get(
     "https://strapi.uagro.mx/api/niveles-superiores?limit=50"
   );
-return [...response.data.docs].reverse();
-})
+  return [...response.data.docs].reverse();
+});
+
+// Peticion https para obtener la data de productos
+const getBachilleratos = createAsyncThunk("school/getBachilleratos", async () => {
+  const response = await axios.get(
+    "https://strapi.uagro.mx/api/Bachilleratos"
+  );
+  return response.data.docs
+});
 
 // Peticion https para obtener la data de servies imagenes
 const getServices = createAsyncThunk("school/getServices", async () => {
   const response = await axios.get(
     "https://strapi.uagro.mx/api/servicios-imagenes"
-  ) 
-return [...response.data.docs].reverse()
+  );
+  return [...response.data.docs].reverse();
 });
 
 // Peticion https para obtener la data de servies imagenes
 const getOffers = createAsyncThunk("school/getOffers", async () => {
-  const response = await axios.get(
-    "https://strapi.uagro.mx/api/oferta"
-  ) 
-return response.data.docs
+  const response = await axios.get("https://strapi.uagro.mx/api/oferta");
+  return response.data.docs;
 });
 
-export { getSchools, changeSearch, changeRegion, getServices, getOffers  };
+export { getSchools, changeSearch, changeRegion, getServices, getOffers, getBachilleratos };

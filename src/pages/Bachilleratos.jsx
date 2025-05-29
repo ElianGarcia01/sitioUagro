@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import EducationalOffer from "../components/EducationalOffer/EducationalOffer";
 import { useSelector } from "react-redux";
+import BachOffer from "../components/BachOffer/BachOffer";
 
 export default function Bachillerato() {
-  const { schoolsState, region, search } = useSelector((state) => state.school);
-  const { schools, status } = schoolsState;
-
+  const { bachState, region, search } = useSelector((state) => state.school);
+  const { bachilleratos, status } = bachState;
   return (
     <>
       {/* BANNER NIVEL BACHILLERATO */}
@@ -40,7 +39,7 @@ export default function Bachillerato() {
           />
         </Link>
         <a
-          href="https://www.dges.uagro.mx/"
+          href="https://dgems.uagro.mx/"
           target="_blank"
           className="w-full h-full"
         >
@@ -53,7 +52,7 @@ export default function Bachillerato() {
       </section>
 
       <section className="min-h-screen w-full">
-        <EducationalOffer region={region} search={search} schools={schools} status={status} />
+        <BachOffer region={region} search={search} schools={bachilleratos} status={status} />
       </section>
     </>
   );
