@@ -1,3 +1,5 @@
+import InstitutionalAccordion from "../components/InstitutionalAccordion/InstitutionalAccordion";
+
 export default function Inicio() {
   return (
     <>
@@ -68,6 +70,17 @@ export default function Inicio() {
             planteado, alta calidad académica y elevado compromiso social.
           </p>
         </div>
+      </section>
+
+      <section
+        className="h-full py-20 w-full bg-cover bg-center relative flex justify-center items-center"
+        style={{
+          backgroundImage:
+            "url('https://uagro.mx/images/rectoria-bn.jpg')",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <InstitutionalAccordion />
       </section>
     </>
   );

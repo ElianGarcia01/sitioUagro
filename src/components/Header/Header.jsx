@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 // ARREGLO DE OBJETOS, RUTAS
 const routes = [
   { path: "/frontend/", name: "Inicio" },
-  { path: "Conocenos", name: "Conocenos" },
+  { path: "Conocenos", name: "Conócenos" },
   { path: "H.C.U", name: "H.C.U" },
   {
     path: "OfertaEducativa",

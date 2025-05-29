@@ -52,7 +52,7 @@ export default function Inicio() {
       </section>
 
       {/* Seccion Video */}
-      <section className="max-h-[50vh] h-screen md:max-h-[53vh] w-full object-cover relative">
+      <section className="max-h-[50vh] h-screen md:max-h-[81vh] w-full object-cover relative">
         {/* Línea animada como borde superior */}
         <div className="absolute top-0 left-0 h-1 bg-red-500 animate-grow-bar z-1"></div>
         <video
@@ -109,7 +109,7 @@ export default function Inicio() {
           <div className="flex justify-center items-center mt-10 lg:w-1/3">
             <img
               src="https://dgtidweb.uagro.mx/ejemplo/images/HCU/logo-hcu.webp"
-              alt="H. Consejo Universitario"
+              alt="H.Consejo Universitario"
             />
           </div>
 

@@ -13,7 +13,12 @@ import Deportes from "./pages/Deportes";
 import Estudiantes from "./pages/Estudiantes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBachilleratos, getOffers, getSchools, getServices } from "./redux/actions/EduActions";
+import {
+  getBachilleratos,
+  getOffers,
+  getSchools,
+  getServices,
+} from "./redux/actions/EduActions";
 import {
   getFeaturedSports,
   getSports,
@@ -25,6 +30,7 @@ import ModalidadVirtual from "./pages/ModalidadVirtual";
 import PSU from "./pages/PSU";
 import Tec_Bach_Univ from "./pages/Tec_Bach_Univ";
 import Bachillerato from "./pages/Bachilleratos";
+import Noticias from "./pages/Noticias";
 
 function App() {
   const dispatch = useDispatch();
@@ -131,6 +137,10 @@ function App() {
         {
           path: "deportes",
           element: <Deportes />,
+        },
+        {
+          path: "noticias",
+          element: <Noticias />,
         },
       ],
     },
