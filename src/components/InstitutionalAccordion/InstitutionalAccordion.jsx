@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaCirclePlus } from "react-icons/fa6";
 
 export default function InstitutionalAccordion() {
@@ -69,50 +69,64 @@ export default function InstitutionalAccordion() {
       ],
     },
   ];
+  useEffect(() => {
+    contentRefs.current.forEach((ref, idx) => {
+      if (ref) {
+        if (openIndex === idx) {
+          ref.style.height = ref.scrollHeight + "px";
+        } else {
+          ref.style.height = "0px";
+        }
+      }
+    });
+  }, [openIndex]);
 
   return (
     <div className="w-full px-6 md:px-28 mx-auto">
       {items.map((item, index) => (
         <div
           key={index}
-          className="mb-2 border border-gray-300 rounded-2xl overflow-hidden"
+          className="mb-3 rounded-2xl overflow-hidden transition-all duration-300"
         >
           <button
             onClick={() => toggle(index)}
-            className={`w-full px-4 py-3 text-left font-semibold cursor-pointer text-white flex justify-between items-center transition-colors duration-300 ${
-              openIndex === index ? "bg-[#2e456e]" : "bg-black/60"
+            className={`w-full px-4 py-3 cursor-pointer text-left font-semibold flex justify-between items-center text-white transition-colors duration-300 rounded-t-2xl focus:outline-none active:scale-100 ${
+              openIndex === index
+                ? "bg-[#2e456e]"
+                : "bg-black/70 hover:bg-black/60"
             }`}
           >
-            <span className="font-bold">
-              <FaCirclePlus className="inline-block" /> {item.title}
+            <span className="font-bold text-xl flex items-center gap-2">
+              <FaCirclePlus /> {item.title}
             </span>
           </button>
 
           <div
             ref={(el) => (contentRefs.current[index] = el)}
-            className={`transition-all duration-700 ease-in-out overflow-hidden bg-black/60 text-white px-4 ${
-              openIndex === index ? "max-h-[1000px] py-4" : "max-h-0 py-0"
-            }`}
+            className="overflow-hidden bg-black/70 text-white px-4 transition-all duration-500 ease-in-out"
+            style={{ height: "0px" }}
           >
-            <h1 className="text-3xl font-semibold mb-3">{item.title}</h1>
+            <div className="py-4">
+              <h1 className="text-3xl font-semibold mb-3">{item.title}</h1>
 
-            {Array.isArray(item.content) ? (
-              item.content.map((paragraph, idx) => (
-                <p key={idx} className="mb-4 text-xl">
-                  {paragraph}
-                </p>
-              ))
-            ) : (
-              <p className="mb-4 text-xl">{item.content}</p>
-            )}
+              {Array.isArray(item.content) ? (
+                item.content.map((paragraph, idx) => (
+                  <p key={idx} className="mb-4 text-xl">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="mb-4 text-xl">{item.content}</p>
+              )}
 
-            {item.bullets && (
-              <ul className="list-disc ml-6 text-xl">
-                {item.bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-            )}
+              {item.bullets && (
+                <ul className="list-disc ml-6 text-xl">
+                  {item.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
       ))}

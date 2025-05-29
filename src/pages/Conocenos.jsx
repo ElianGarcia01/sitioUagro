@@ -1,4 +1,5 @@
 import InstitutionalAccordion from "../components/InstitutionalAccordion/InstitutionalAccordion";
+import UAGroTabs from "../components/UAGroTabs/UAGroTabs";
 
 export default function Inicio() {
   return (
@@ -72,15 +73,27 @@ export default function Inicio() {
         </div>
       </section>
 
+      {/* SECCION DE ACORDIONES */}
       <section
         className="h-full py-20 w-full bg-cover bg-center relative flex justify-center items-center"
         style={{
-          backgroundImage:
-            "url('https://uagro.mx/images/rectoria-bn.jpg')",
+          backgroundImage: "url('https://uagro.mx/images/rectoria-bn.jpg')",
           backgroundAttachment: "fixed",
         }}
       >
         <InstitutionalAccordion />
+      </section>
+
+      {/* SECCION DE HISTORIA Y ESCUDO */}
+      <section
+        className="min-h-screen py-10 w-full bg-cover bg-center relative flex justify-center items-start"
+        style={{
+          backgroundImage:
+            "url('https://uagro.mx/images/2024/07/17/fondo-historia-06.webp')",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <UAGroTabs />
       </section>
     </>
   );
